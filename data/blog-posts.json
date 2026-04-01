@@ -1,8 +1,10 @@
 [
   {
     "id": 1,
+    "slug": "claude-sonnet-ia-desarrollo-software",
     "title": "Claude 3.5 Sonnet: el modelo de IA más eficiente para desarrollo de software en 2025",
     "excerpt": "Anthropic lanzó Claude 3.5 Sonnet con mejoras significativas en escritura de código y razonamiento. Así lo integramos en nuestro flujo de trabajo para reducir tiempos de entrega hasta 3x.",
+    "content": "La inteligencia artificial ha dejado de ser una promesa futurista para convertirse en una herramienta esencial en el desarrollo de software moderno. Con el lanzamiento de Claude 3.5 Sonnet, Anthropic ha elevado el estándar de lo que un modelo de lenguaje puede hacer por un equipo de desarrollo.\n\nEn Kaizen Code, integramos Claude directamente en nuestro flujo de trabajo diario. Lo utilizamos para revisión de código, generación de tests unitarios, documentación técnica automatizada y detección temprana de bugs antes de que lleguen a producción. El resultado ha sido tangible: tareas que antes tomaban horas de revisión manual ahora se completan en minutos con una precisión notable.\n\nLo que distingue a Claude 3.5 Sonnet de otros modelos es su capacidad de entender contexto amplio. Puede analizar archivos completos, entender la arquitectura de un proyecto y sugerir cambios que respetan las convenciones existentes del código. No es solo autocompletar — es razonamiento técnico real.\n\nPara equipos pequeños como el nuestro, esto significa que tres desarrolladores pueden producir con la velocidad de un equipo mucho más grande. No reemplaza al programador — lo potencia. Y esa es exactamente la filosofía Kaizen: mejora continua, una iteración a la vez, ahora acelerada con IA.",
     "category": "IA & Tecnología",
     "date": "25 Mar 2025",
     "readTime": "5 min",
@@ -11,8 +13,10 @@
   },
   {
     "id": 2,
+    "slug": "nextjs-15-desarrollo-web-2025",
     "title": "Por qué Next.js 15 es nuestra apuesta para el desarrollo web en 2025",
     "excerpt": "Las mejoras en Server Components y el nuevo App Router hacen de Next.js la opción más sólida para aplicaciones web modernas de alto rendimiento y buena experiencia de usuario.",
+    "content": "Elegir el framework correcto para un proyecto web no es trivial. En Kaizen Code hemos trabajado con React puro, Vite, Remix y Next.js, y después de evaluar las últimas actualizaciones, Next.js 15 se ha consolidado como nuestra opción predeterminada para proyectos nuevos.\n\nLas razones son concretas. Server Components permiten renderizar en el servidor sin enviar JavaScript innecesario al cliente, lo que se traduce en tiempos de carga drásticamente menores. El App Router simplifica la estructura de rutas y layouts, eliminando boilerplate que antes era inevitable. Y Turbopack, el nuevo bundler, reduce los tiempos de compilación en desarrollo a milisegundos.\n\nPara nuestros clientes esto se traduce en aplicaciones más rápidas, mejor SEO desde el día uno, y menor costo de infraestructura porque el servidor hace más trabajo y el cliente descarga menos. Un caso reciente: migramos una SPA de React con tiempos de carga de 3.2 segundos a Next.js 15 y bajó a 0.8 segundos.\n\nLa combinación de Next.js con TypeScript y Tailwind CSS nos da un stack predecible, tipado y estilizado que cualquier desarrollador puede mantener. No es magia — es ingeniería bien elegida.",
     "category": "Desarrollo",
     "date": "18 Mar 2025",
     "readTime": "7 min",
@@ -21,8 +25,10 @@
   },
   {
     "id": 3,
+    "slug": "aws-reinvent-2024-startups",
     "title": "AWS re:Invent 2024: las 5 novedades que cambian el juego para startups",
     "excerpt": "Amazon presentó nuevas herramientas que reducen significativamente el costo y complejidad de operar infraestructura cloud. Analizamos cuáles son relevantes para proyectos en México.",
+    "content": "Cada año, AWS re:Invent presenta decenas de nuevos servicios y actualizaciones. Para una startup en México, filtrar lo relevante del ruido es crítico — no todo aplica cuando tu presupuesto de infraestructura es limitado y necesitas resultados inmediatos.\n\nDe todo lo anunciado, cinco cosas llamaron nuestra atención. Primero, Amazon Aurora Serverless v2 ahora escala a cero, lo que significa que si tu base de datos no recibe tráfico en la madrugada, no pagas nada. Para proyectos en etapa temprana, esto puede representar ahorros del 60-70% en costos de base de datos.\n\nSegundo, AWS App Runner se simplificó aún más. Ahora puedes desplegar contenedores Docker directamente desde GitHub sin configurar VPCs, load balancers ni certificados SSL. Tercero, Amazon Bedrock expandió su soporte para Claude y otros modelos, haciendo trivial integrar IA en cualquier aplicación.\n\nCuarto, Step Functions ahora incluyen workflows visuales para orquestar microservicios sin escribir código de coordinación. Y quinto, el free tier se expandió significativamente — más horas de cómputo y almacenamiento gratuito por 12 meses.\n\nPara startups mexicanas, la combinación de costos reducidos y menor complejidad operativa hace que AWS sea más accesible que nunca. En Kaizen Code estamos migrando varios proyectos para aprovechar estas mejoras.",
     "category": "Cloud",
     "date": "10 Mar 2025",
     "readTime": "6 min",
@@ -31,8 +37,10 @@
   },
   {
     "id": 4,
+    "slug": "langchain-vs-llamaindex-2025",
     "title": "LangChain vs LlamaIndex: cuál elegir para tu proyecto de IA en 2025",
     "excerpt": "Comparamos los dos frameworks más populares para construir aplicaciones con LLMs. Casos de uso, pros, contras y cuándo conviene cada uno según el tipo de proyecto.",
+    "content": "Si estás construyendo una aplicación que usa modelos de lenguaje, probablemente has escuchado de LangChain y LlamaIndex. Ambos son frameworks de Python para trabajar con LLMs, pero resuelven problemas diferentes y elegir el equivocado puede costarte semanas de refactorización.\n\nLangChain es un framework de orquestación. Su fortaleza es encadenar múltiples pasos: recibir input del usuario, buscar en una base de datos, pasar contexto al LLM, ejecutar una acción y responder. Es ideal para chatbots conversacionales, agentes autónomos y workflows complejos donde el LLM necesita interactuar con herramientas externas.\n\nLlamaIndex, en cambio, se especializa en RAG (Retrieval-Augmented Generation). Su fortaleza es indexar documentos, crear embeddings eficientes y responder preguntas sobre bases de conocimiento privadas. Si tu caso de uso es \"quiero que un chatbot responda preguntas sobre mis PDFs\", LlamaIndex es la opción más directa.\n\nEn Kaizen Code usamos ambos dependiendo del proyecto. Para un portal de soporte técnico donde el bot necesita buscar en documentación interna, LlamaIndex. Para un agente que necesita consultar APIs, ejecutar código y tomar decisiones, LangChain. La clave es no sobrecomplicar: si solo necesitas llamar a un LLM con contexto, a veces la API directa de Anthropic o OpenAI es suficiente.",
     "category": "IA & Tecnología",
     "date": "3 Mar 2025",
     "readTime": "8 min",
@@ -41,8 +49,10 @@
   },
   {
     "id": 5,
+    "slug": "docker-produccion-errores-comunes",
     "title": "Docker en producción: errores comunes que cuestan tiempo y dinero",
     "excerpt": "Después de decenas de deploys, estos son los errores más frecuentes que vemos en proyectos que llegan a nosotros para optimización. Cómo detectarlos y corregirlos.",
+    "content": "Docker simplificó radicalmente el deployment de aplicaciones, pero muchos equipos cometen errores que no se notan en desarrollo y explotan en producción. Después de auditar múltiples proyectos, estos son los patrones que más vemos.\n\nEl error más costoso: imágenes de 2-3 GB porque usan `node:latest` como base en lugar de `node:alpine`. Una imagen pesada significa deploys más lentos, más costo de almacenamiento en ECR/Docker Hub, y tiempos de arranque innecesarios. La solución es simple: multi-stage builds. Tu etapa de build usa la imagen completa, y la de producción copia solo los artefactos necesarios a Alpine.\n\nSegundo error frecuente: no definir health checks. Sin health checks, tu orquestador (ECS, Kubernetes) no sabe si tu contenedor está vivo pero no respondiendo. El resultado: usuarios ven errores 502 y nadie se entera hasta que alguien se queja. Un endpoint /health que verifica la conexión a la base de datos toma 5 minutos de implementar y ahorra horas de debugging.\n\nTercer error: correr como root. Por defecto, Docker ejecuta procesos como root dentro del contenedor. Si hay una vulnerabilidad en tu app, el atacante tiene acceso root. Agrega `USER node` en tu Dockerfile y ejecuta con permisos mínimos.\n\nEstos tres cambios toman menos de una hora y mejoran seguridad, velocidad y confiabilidad de cualquier proyecto en producción.",
     "category": "DevOps",
     "date": "24 Feb 2025",
     "readTime": "5 min",
@@ -51,8 +61,10 @@
   },
   {
     "id": 6,
+    "slug": "filosofia-kaizen-velocidad-software",
     "title": "Cómo la filosofía Kaizen transforma la velocidad de entrega en software",
     "excerpt": "Pequeñas mejoras consistentes generan grandes resultados. Explicamos cómo aplicamos la metodología japonesa de mejora continua a cada sprint, commit y deploy.",
+    "content": "Kaizen es un concepto japonés que significa \"cambio para mejor\". En manufactura, Toyota lo convirtió en una filosofía que transformó la industria automotriz. En software, aplicamos el mismo principio: mejoras pequeñas, consistentes y medibles en cada iteración.\n\nEn la práctica, esto significa que al final de cada sprint no solo entregamos funcionalidades — también identificamos un proceso que podemos mejorar. Puede ser algo técnico (reducir el tiempo de build de 4 minutos a 2) o de proceso (automatizar un reporte que antes hacíamos manual). Estas mejoras se acumulan exponencialmente.\n\nUn ejemplo concreto: en un proyecto reciente, el deploy manual tomaba 45 minutos entre preparar el build, verificar, subir a staging, probar, y promover a producción. Aplicando Kaizen, en 4 sprints fuimos automatizando cada paso. Hoy el deploy completo toma 3 minutos y un solo comando. Eso es 42 minutos ahorrados por cada deploy, multiplicado por los 3-4 deploys semanales que hacemos.\n\nLa filosofía Kaizen también aplica a cómo usamos IA. No la adoptamos de golpe para reemplazar procesos — la integramos gradualmente donde genera más valor. Primero en code review, luego en generación de tests, después en documentación. Cada integración la medimos, ajustamos y mejoramos antes de pasar a la siguiente.\n\nNo se trata de ser perfecto. Se trata de ser mejor que ayer, todos los días.",
     "category": "Metodología",
     "date": "14 Feb 2025",
     "readTime": "4 min",

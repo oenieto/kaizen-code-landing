@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Rss } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import postsData from '../data/blog-posts.json';
 
 interface Post {
   id: number;
+  slug: string;
   title: string;
   excerpt: string;
   category: string;
@@ -72,27 +74,29 @@ export const BlogPage: React.FC = () => {
         <section className="py-12 bg-surface-light dark:bg-surface-dark border-b border-accent-light dark:border-accent-dark">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <Reveal>
-              <article className="group cursor-pointer bg-bg-light dark:bg-bg-dark border border-accent-light dark:border-accent-dark rounded-lg p-8 md:p-10 hover:border-primary/40 transition-colors duration-300">
-                <div className="flex flex-wrap items-center gap-3 mb-5">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/30 bg-primary/5 px-2 py-0.5 rounded">
-                    Destacado
+              <Link to={`/blog/${featured.slug}`} className="block">
+                <article className="group cursor-pointer bg-bg-light dark:bg-bg-dark border border-accent-light dark:border-accent-dark rounded-lg p-8 md:p-10 hover:border-primary/40 transition-colors duration-300">
+                  <div className="flex flex-wrap items-center gap-3 mb-5">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/30 bg-primary/5 px-2 py-0.5 rounded">
+                      Destacado
+                    </span>
+                    <CategoryBadge category={featured.category} />
+                    <span className="flex items-center gap-1 text-xs text-text-dark-muted dark:text-text-muted">
+                      <Clock size={12} /> {featured.readTime}
+                    </span>
+                    <span className="text-xs text-text-dark-muted dark:text-text-muted">{featured.date}</span>
+                  </div>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-text-dark dark:text-white mb-4 group-hover:text-primary transition-colors max-w-3xl">
+                    {featured.title}
+                  </h2>
+                  <p className="text-text-dark-muted dark:text-text-muted leading-relaxed max-w-2xl mb-6">
+                    {featured.excerpt}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-primary text-sm font-medium group-hover:gap-3 transition-all duration-200">
+                    Leer artículo <ArrowRight size={16} />
                   </span>
-                  <CategoryBadge category={featured.category} />
-                  <span className="flex items-center gap-1 text-xs text-text-dark-muted dark:text-text-muted">
-                    <Clock size={12} /> {featured.readTime}
-                  </span>
-                  <span className="text-xs text-text-dark-muted dark:text-text-muted">{featured.date}</span>
-                </div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-text-dark dark:text-white mb-4 group-hover:text-primary transition-colors max-w-3xl">
-                  {featured.title}
-                </h2>
-                <p className="text-text-dark-muted dark:text-text-muted leading-relaxed max-w-2xl mb-6">
-                  {featured.excerpt}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-primary text-sm font-medium group-hover:gap-3 transition-all duration-200">
-                  Leer artículo <ArrowRight size={16} />
-                </span>
-              </article>
+                </article>
+              </Link>
             </Reveal>
           </div>
         </section>
@@ -130,26 +134,28 @@ export const BlogPage: React.FC = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((post, idx) => (
                 <Reveal key={post.id} delay={idx * 0.08}>
-                  <article className="group bg-surface-light dark:bg-surface-dark border border-accent-light dark:border-accent-dark rounded-lg p-6 hover:border-primary/40 transition-colors duration-300 cursor-pointer h-full flex flex-col">
-                    <div className="flex items-center gap-2 mb-4 flex-wrap">
-                      <CategoryBadge category={post.category} />
-                      <span className="flex items-center gap-1 text-xs text-text-dark-muted dark:text-text-muted ml-auto">
-                        <Clock size={11} /> {post.readTime}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-base text-text-dark dark:text-white group-hover:text-primary transition-colors mb-3 flex-1 leading-snug">
-                      {post.title}
-                    </h3>
-                    <p className="text-text-dark-muted dark:text-text-muted text-sm leading-relaxed mb-5 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between mt-auto">
-                      <span className="text-xs text-text-dark-muted dark:text-gray-500">{post.date}</span>
-                      <span className="text-primary text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
-                        Leer <ArrowRight size={12} />
-                      </span>
-                    </div>
-                  </article>
+                  <Link to={`/blog/${post.slug}`} className="block h-full">
+                    <article className="group bg-surface-light dark:bg-surface-dark border border-accent-light dark:border-accent-dark rounded-lg p-6 hover:border-primary/40 transition-colors duration-300 cursor-pointer h-full flex flex-col">
+                      <div className="flex items-center gap-2 mb-4 flex-wrap">
+                        <CategoryBadge category={post.category} />
+                        <span className="flex items-center gap-1 text-xs text-text-dark-muted dark:text-text-muted ml-auto">
+                          <Clock size={11} /> {post.readTime}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-base text-text-dark dark:text-white group-hover:text-primary transition-colors mb-3 flex-1 leading-snug">
+                        {post.title}
+                      </h3>
+                      <p className="text-text-dark-muted dark:text-text-muted text-sm leading-relaxed mb-5 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between mt-auto">
+                        <span className="text-xs text-text-dark-muted dark:text-gray-500">{post.date}</span>
+                        <span className="text-primary text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
+                          Leer <ArrowRight size={12} />
+                        </span>
+                      </div>
+                    </article>
+                  </Link>
                 </Reveal>
               ))}
             </div>
