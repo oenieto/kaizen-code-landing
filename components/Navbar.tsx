@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -7,6 +7,21 @@ export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,14 +85,16 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-text-dark-muted dark:text-text-muted hover:text-primary transition-colors"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-sm font-medium text-text-dark-muted dark:text-text-muted hover:text-primary transition-colors cursor-pointer"
               >
                 {link.name}
               </a>
             ))}
             <a
               href="#contact"
-              className="px-6 py-2.5 bg-primary hover:bg-primary-dark text-white rounded text-sm font-medium transition-colors duration-200"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="px-6 py-2.5 bg-primary hover:bg-primary-dark text-white rounded text-sm font-medium transition-colors duration-200 cursor-pointer"
             >
               Contacto
             </a>
@@ -114,16 +131,16 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-base font-medium text-text-dark dark:text-text-light hover:text-primary"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="block text-base font-medium text-text-dark dark:text-text-light hover:text-primary cursor-pointer"
               >
                 {link.name}
               </a>
             ))}
             <a
               href="#contact"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center px-6 py-3 bg-primary text-white rounded font-medium mt-4"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="block w-full text-center px-6 py-3 bg-primary text-white rounded font-medium mt-4 cursor-pointer"
             >
               Contacto
             </a>
