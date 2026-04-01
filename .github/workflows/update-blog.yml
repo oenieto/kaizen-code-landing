@@ -1,0 +1,47 @@
+name: 📰 Actualizar Blog Semanal
+
+on:
+  schedule:
+    # Cada lunes a las 9:00 AM hora Ciudad de México (UTC-6 = 15:00 UTC)
+    - cron: '0 15 * * 1'
+  workflow_dispatch: # También permite ejecutarlo manualmente desde GitHub Actions
+
+jobs:
+  update-blog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Instalar Anthropic SDK (si no está en package.json)
+        run: npm install @anthropic-ai/sdk --no-save
+
+      - name: Ejecutar script de actualización
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/update-blog.mjs
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config user.name "Kaizen Code Bot"
+          git config user.email "bot@kaizencode.mx"
+          git add data/blog-posts.json
+          if git diff --staged --quiet; then
+            echo "Sin cambios en el blog esta semana."
+          else
+            git commit -m "chore: actualización semanal del blog [$(date '+%Y-%m-%d')]"
+            git push
+          fi

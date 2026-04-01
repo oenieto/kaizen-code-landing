@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-sm text-text-dark-muted dark:text-gray-400">
-              Código artesanal para la era digital moderna.
+              Software impulsado por IA. Hecho en México con filosofía Kaizen.
             </p>
           </div>
 
@@ -24,7 +24,6 @@ export const Footer: React.FC = () => {
             <h4 className="font-bold text-text-dark dark:text-white mb-4 text-sm uppercase tracking-wider">Empresa</h4>
             <ul className="space-y-2 text-sm text-text-dark-muted dark:text-gray-400">
               <li><Link to="/about" className="hover:text-primary transition-colors">Sobre Nosotros</Link></li>
-              <li><Link to="/careers" className="hover:text-primary transition-colors">Carreras</Link></li>
               <li><Link to="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
             </ul>
           </div>
@@ -53,7 +52,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-accent-light dark:border-accent-dark pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-text-dark-muted dark:text-gray-500">
-          <p>© 2023 Kaizen Code. Todos los derechos reservados.</p>
+          <p>© 2025 Kaizen Code. Todos los derechos reservados.</p>
           <div className="flex items-center gap-2 mt-2 md:mt-0">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>All Systems Operational</span>

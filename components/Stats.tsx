@@ -3,10 +3,10 @@ import { Reveal } from './Reveal';
 import { Stat } from '../types';
 
 const stats: Stat[] = [
-  { id: 1, value: "50+", label: "Proyectos" },
-  { id: 2, value: "99%", label: "Uptime" },
-  { id: 3, value: "5", label: "Años Exp." },
-  { id: 4, value: "24/7", label: "Soporte" },
+  { id: 1, value: "3x", label: "Más Rápido que una Agencia Tradicional" },
+  { id: 2, value: "48h", label: "Primer Entregable Garantizado" },
+  { id: 3, value: "99.9%", label: "Uptime en Producción" },
+  { id: 4, value: "24/7", label: "Soporte Post-Entrega Incluido" },
 ];
 
 export const Stats: React.FC = () => {
@@ -20,7 +20,7 @@ export const Stats: React.FC = () => {
                 <div className="text-4xl md:text-5xl font-display font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors duration-300">
                   {stat.value}
                 </div>
-                <div className="text-sm font-medium text-text-dark-muted dark:text-gray-500 uppercase tracking-widest">
+                <div className="text-xs font-medium text-text-dark-muted dark:text-gray-500 uppercase tracking-widest leading-relaxed max-w-[140px] mx-auto">
                   {stat.label}
                 </div>
               </div>

@@ -4,6 +4,7 @@ export interface Service {
   title: string;
   description: string;
   tags: string[];
+  badge?: string;
 }
 
 export interface Project {

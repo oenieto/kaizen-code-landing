@@ -7,7 +7,7 @@ interface Props {
   delay?: number;
 }
 
-export const Reveal: React.FC<Props> = ({ children, width = "fit-content", delay = 0.25 }) => {
+export const Reveal: React.FC<Props> = ({ children, width = "100%", delay = 0.25 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-75px" });
   const mainControls = useAnimation();

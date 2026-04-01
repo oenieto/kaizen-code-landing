@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Claude 3.5 Sonnet: el modelo de IA más eficiente para desarrollo de software en 2025",
+    "excerpt": "Anthropic lanzó Claude 3.5 Sonnet con mejoras significativas en escritura de código y razonamiento. Así lo integramos en nuestro flujo de trabajo para reducir tiempos de entrega hasta 3x.",
+    "category": "IA & Tecnología",
+    "date": "25 Mar 2025",
+    "readTime": "5 min",
+    "featured": true,
+    "source": "Kaizen Code"
+  },
+  {
+    "id": 2,
+    "title": "Por qué Next.js 15 es nuestra apuesta para el desarrollo web en 2025",
+    "excerpt": "Las mejoras en Server Components y el nuevo App Router hacen de Next.js la opción más sólida para aplicaciones web modernas de alto rendimiento y buena experiencia de usuario.",
+    "category": "Desarrollo",
+    "date": "18 Mar 2025",
+    "readTime": "7 min",
+    "featured": false,
+    "source": "Kaizen Code"
+  },
+  {
+    "id": 3,
+    "title": "AWS re:Invent 2024: las 5 novedades que cambian el juego para startups",
+    "excerpt": "Amazon presentó nuevas herramientas que reducen significativamente el costo y complejidad de operar infraestructura cloud. Analizamos cuáles son relevantes para proyectos en México.",
+    "category": "Cloud",
+    "date": "10 Mar 2025",
+    "readTime": "6 min",
+    "featured": false,
+    "source": "Kaizen Code"
+  },
+  {
+    "id": 4,
+    "title": "LangChain vs LlamaIndex: cuál elegir para tu proyecto de IA en 2025",
+    "excerpt": "Comparamos los dos frameworks más populares para construir aplicaciones con LLMs. Casos de uso, pros, contras y cuándo conviene cada uno según el tipo de proyecto.",
+    "category": "IA & Tecnología",
+    "date": "3 Mar 2025",
+    "readTime": "8 min",
+    "featured": false,
+    "source": "Kaizen Code"
+  },
+  {
+    "id": 5,
+    "title": "Docker en producción: errores comunes que cuestan tiempo y dinero",
+    "excerpt": "Después de decenas de deploys, estos son los errores más frecuentes que vemos en proyectos que llegan a nosotros para optimización. Cómo detectarlos y corregirlos.",
+    "category": "DevOps",
+    "date": "24 Feb 2025",
+    "readTime": "5 min",
+    "featured": false,
+    "source": "Kaizen Code"
+  },
+  {
+    "id": 6,
+    "title": "Cómo la filosofía Kaizen transforma la velocidad de entrega en software",
+    "excerpt": "Pequeñas mejoras consistentes generan grandes resultados. Explicamos cómo aplicamos la metodología japonesa de mejora continua a cada sprint, commit y deploy.",
+    "category": "Metodología",
+    "date": "14 Feb 2025",
+    "readTime": "4 min",
+    "featured": false,
+    "source": "Kaizen Code"
+  }
+]
