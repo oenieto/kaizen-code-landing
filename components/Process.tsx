@@ -5,7 +5,7 @@ import { Section, RuledItem } from './Section';
 export const Process: React.FC = () => (
   <Section
     id="process"
-    title="Cómo trabajamos"
+    title="El proceso, paso a paso"
     intro="Kaizen significa mejora continua: ciclos cortos, entregables concretos y decisiones tomadas con información, no con suposiciones."
   >
     <ol className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-5">

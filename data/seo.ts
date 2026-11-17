@@ -24,6 +24,18 @@ const staticRoutes: RouteMeta[] = [
       'Kaizen Code es un estudio de ingeniería de software en México. Desarrollamos CRM a la medida, agentes de WhatsApp e IA, automatizaciones con n8n, recorridos 3D para inmuebles y plataformas web listas para producción.',
   },
   {
+    path: '/trabajo',
+    title: 'Trabajo — Kaizen Code',
+    description:
+      'Proyectos de Kaizen Code: portales para telecomunicaciones, facturación CFDI, asistentes con IA, agentes de WhatsApp y más.',
+  },
+  {
+    path: '/como-trabajamos',
+    title: 'Cómo trabajamos — Kaizen Code',
+    description:
+      'Nuestro proceso de desarrollo de software paso a paso, modelos de contratación y estándares de ingeniería: pruebas, seguridad y despliegues confiables.',
+  },
+  {
     path: '/about',
     title: 'Nosotros — Kaizen Code',
     description:

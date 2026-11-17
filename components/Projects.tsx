@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { caseStudy, labProjects, type Project } from '../data/site';
 import { Reveal } from './Reveal';
 
@@ -106,19 +107,44 @@ const LabItem: React.FC<{ project: Project; delay: number; tall?: boolean }> = (
   </Reveal>
 );
 
-export const Projects: React.FC = () => {
-  const [folio, ...rest] = labProjects;
+/** Short version for the home page: three projects and a link to /trabajo. */
+export const ProjectsTeaser: React.FC = () => {
+  const featured = [caseStudy, ...labProjects.slice(0, 2)];
   return (
-    <section id="work" aria-labelledby="work-title" className="py-24 sm:py-32">
+    <section id="work" aria-labelledby="work-title" className="border-t border-line py-24 sm:py-32">
       <div className="container-page">
         <Reveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <h2 id="work-title" className="display-2">
             Trabajo
           </h2>
           <p className="max-w-md text-[15px] leading-relaxed text-muted">
-            Proyectos con clientes y productos propios. Cada estado es real: si dice prototipo, es un prototipo.
+            Proyectos con clientes y productos propios que estamos construyendo.
           </p>
         </Reveal>
+        <div className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-3">
+          {featured.map((p, i) => (
+            <LabItem key={p.slug} project={p} delay={i * 0.05} />
+          ))}
+        </div>
+        <Reveal className="mt-12">
+          <Link to="/trabajo" className="btn-secondary">
+            Ver todo el trabajo
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+};
+
+/** Full grid for the /trabajo page (the page header provides the title). */
+export const Projects: React.FC = () => {
+  const [folio, ...rest] = labProjects;
+  return (
+    <section id="work" aria-label="Proyectos" className="py-24 sm:py-32">
+      <div className="container-page">
+        <p className="max-w-xl text-[17px] leading-[1.75] text-muted">
+          Cada estado es real: si dice prototipo, es un prototipo. Escríbenos si alguno resuelve un problema que tienes hoy.
+        </p>
 
         <div className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
           <Reveal className="md:col-span-2">

@@ -8,7 +8,7 @@ export const Solutions: React.FC = () => (
   <Section
     id="solutions"
     title="Soluciones para tu negocio"
-    intro="Soluciones que adaptamos a tu operación. Partimos de tecnología probada en el mercado y la ajustamos a tus procesos, en semanas y no en meses."
+    intro="Elige lo que tu negocio necesita. Lo adaptamos a tu forma de trabajar y lo tienes funcionando en semanas, no en meses."
   >
     <div className="grid gap-x-10 gap-y-16 lg:grid-cols-2">
       {solutions.map((s, i) => (
@@ -28,8 +28,7 @@ export const Solutions: React.FC = () => (
                 </li>
               ))}
             </ul>
-            <div className="mt-auto flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-faint">{s.stack}</p>
+            <div className="mt-auto pt-8">
               <a
                 href="#contact"
                 onClick={() => window.dispatchEvent(new CustomEvent(SELECT_PROJECT_TYPE, { detail: s.name }))}

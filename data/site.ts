@@ -261,6 +261,22 @@ export const process: Step[] = [
   },
 ];
 
+/** Plain-language version of the process, for the home page. */
+export const homeSteps = [
+  {
+    title: 'Platicamos',
+    body: 'Una llamada de 30 minutos para entender tu negocio y lo que necesitas. Sin costo y sin compromiso.',
+  },
+  {
+    title: 'Construimos contigo',
+    body: 'Cada dos semanas te mostramos avances que ya puedes usar, y ajustamos según lo que veas.',
+  },
+  {
+    title: 'Lanzamos y te acompañamos',
+    body: 'Ponemos tu sistema en marcha, capacitamos a tu equipo y seguimos ahí si algo se necesita.',
+  },
+];
+
 export interface Engagement {
   name: string;
   fit: string;

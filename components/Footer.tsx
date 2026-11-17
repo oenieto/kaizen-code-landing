@@ -4,8 +4,8 @@ import { CONTACT } from '../data/site';
 
 const site = [
   { label: 'Soluciones', to: '/#solutions' },
-  { label: 'Qué hacemos', to: '/#services' },
-  { label: 'Trabajo', to: '/#work' },
+  { label: 'Trabajo', to: '/trabajo' },
+  { label: 'Cómo trabajamos', to: '/como-trabajamos' },
   { label: 'Nosotros', to: '/about' },
   { label: 'Blog', to: '/blog' },
   { label: 'Escríbenos', to: '/#contact' },

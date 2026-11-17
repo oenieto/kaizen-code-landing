@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { PageHeader } from '../components/PageHeader';
 import { Section, RuledItem } from '../components/Section';
+import { CtaBand } from '../components/CtaBand';
 
 interface Member {
   name: string;
@@ -139,14 +139,7 @@ export const AboutPage: React.FC = () => {
         </div>
       </Section>
 
-      <section className="border-t border-line py-24 sm:py-32">
-        <div className="container-page flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <h2 className="display-2 max-w-[16ch] text-balance">¿Tienes un sistema que tiene que funcionar?</h2>
-          <Link to="/#contact" className="link shrink-0 text-lg">
-            Escríbenos
-          </Link>
-        </div>
-      </section>
+      <CtaBand title="¿Tienes un sistema que tiene que funcionar?" />
     </>
   );
 };

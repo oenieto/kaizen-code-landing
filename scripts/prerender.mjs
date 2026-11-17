@@ -51,6 +51,8 @@ function head(meta, { index = true } = {}) {
 async function write(meta, file, opts) {
   const appHtml = await render(meta.path);
   if (!appHtml.includes('<main')) throw new Error(`Prerender of ${meta.path} produced no <main>`);
+  // Content must be inline, not a deferred Suspense segment (see entry-server.tsx).
+  if (/<template id="B:|\$RC\(/.test(appHtml)) throw new Error(`Prerender of ${meta.path} left a Suspense fallback`);
   let html = template.replace(/<!--seo:start-->[\s\S]*?<!--seo:end-->/, head(meta, opts));
   html = html.replace('<!--app-->', appHtml);
   if (opts?.index === false) html = html.replace('<meta name="robots" content="index, follow, max-image-preview:large" />', '');

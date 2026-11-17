@@ -3,9 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
   { name: 'Soluciones', href: '#solutions' },
-  { name: 'Qué hacemos', href: '#services' },
-  { name: 'Trabajo', href: '#work' },
-  { name: 'Cómo trabajamos', href: '#process' },
+  { name: 'Trabajo', href: '/trabajo' },
+  { name: 'Cómo trabajamos', href: '/como-trabajamos' },
   { name: 'Nosotros', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Escríbenos', href: '#contact' },

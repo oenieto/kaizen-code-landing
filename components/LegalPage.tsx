@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { PageHeader } from './PageHeader';
+import { CtaBand } from './CtaBand';
 
 export interface LegalSection {
   id: string;
@@ -49,14 +49,7 @@ export const LegalPage: React.FC<Props> = ({ title, subtitle, sections, ctaTitle
         </div>
       </div>
 
-      <section className="border-t border-line py-20">
-        <div className="container-page flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="display-2 max-w-[16ch]">{ctaTitle}</h2>
-          <Link to="/#contact" className="link shrink-0 text-lg">
-            Escríbenos
-          </Link>
-        </div>
-      </section>
+      <CtaBand title={ctaTitle} />
     </>
   );
 };

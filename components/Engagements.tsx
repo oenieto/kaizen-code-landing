@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { engagements } from '../data/site';
 import { Section } from './Section';
@@ -38,14 +39,14 @@ export const Engagements: React.FC = () => (
             </ul>
 
             <div className="mt-auto pt-10">
-              <a
-                href="#contact"
+              <Link
+                to="/#contact"
                 className={`btn w-full ${
                   e.featured ? 'bg-white text-black hover:bg-accent' : 'bg-fg text-white hover:bg-accent hover:text-black'
                 }`}
               >
                 Cotizar {e.name.toLowerCase()}
-              </a>
+              </Link>
             </div>
           </article>
         </Reveal>

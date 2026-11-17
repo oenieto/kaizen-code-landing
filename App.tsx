@@ -12,6 +12,8 @@ const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then((m) => ({ default: m.BlogPostPage })));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage').then((m) => ({ default: m.PrivacyPage })));
 const TermsPage = lazy(() => import('./pages/TermsPage').then((m) => ({ default: m.TermsPage })));
+const WorkPage = lazy(() => import('./pages/WorkPage').then((m) => ({ default: m.WorkPage })));
+const HowWeWorkPage = lazy(() => import('./pages/HowWeWorkPage').then((m) => ({ default: m.HowWeWorkPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 
 /** New route without a hash starts at the top; hash links are handled by the page. */
@@ -75,6 +77,8 @@ function App() {
         <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/trabajo" element={<WorkPage />} />
+            <Route path="/como-trabajamos" element={<HowWeWorkPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
