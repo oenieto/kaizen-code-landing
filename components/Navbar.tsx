@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
+  { name: 'Soluciones', href: '#solutions' },
   { name: 'Qué hacemos', href: '#services' },
   { name: 'Trabajo', href: '#work' },
   { name: 'Cómo trabajamos', href: '#process' },

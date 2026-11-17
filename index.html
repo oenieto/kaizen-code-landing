@@ -3,45 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kaizen Code — Ingeniería de software para productos que deben funcionar</title>
+    <!--seo:start-->
+    <title>Kaizen Code — Desarrollo de software a la medida en México</title>
     <meta
       name="description"
-      content="Estudio de ingeniería de software en México. Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA con estándares de producción: tipado de punta a punta, CI/CD, observabilidad y seguridad desde el día uno."
+      content="Kaizen Code es un estudio de ingeniería de software en México. Desarrollamos CRM a la medida, agentes de WhatsApp e IA, automatizaciones con n8n, recorridos 3D para inmuebles y plataformas web listas para producción."
     />
-    <meta name="theme-color" content="#121212" />
+    <link rel="canonical" href="https://kaizencode.com.mx/" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_MX" />
-    <meta property="og:site_name" content="Kaizen Code" />
-    <meta property="og:title" content="Kaizen Code — Ingeniería de software" />
+    <meta property="og:url" content="https://kaizencode.com.mx/" />
+    <meta property="og:title" content="Kaizen Code — Desarrollo de software a la medida en México" />
     <meta
       property="og:description"
-      content="Plataformas web, APIs e integraciones con IA construidas con estándares de producción."
+      content="CRM a la medida, agentes de WhatsApp e IA, automatizaciones con n8n y plataformas web listas para producción."
     />
-    <meta name="twitter:card" content="summary" />
-    <link rel="icon" type="image/png" href="/assets/kaizenlogo-removebg-preview.png" />
+    <!--seo:end-->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#121212" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Kaizen Code" />
+    <meta property="og:image" content="https://kaizencode.com.mx/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Kaizen Code — Estudio de ingeniería de software" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://kaizencode.com.mx/og.png" />
+
+    <!-- Scroll-reveal sections start hidden in the static HTML; show them when JS is off. -->
+    <noscript><style>[style*="opacity:0"]{opacity:1!important;transform:none!important}</style></noscript>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
 
-
+    <!-- Brand entity for search engines: name, site, logo, founders, contact. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Kaizen Code",
-        "description": "Estudio de ingeniería de software en México.",
-        "areaServed": "MX",
-        "knowsAbout": ["Software engineering", "Cloud architecture", "LLM integration", "DevOps"]
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://kaizencode.com.mx/#organization",
+            "name": "Kaizen Code",
+            "alternateName": ["KaizenCode", "Kaizen Code México"],
+            "url": "https://kaizencode.com.mx/",
+            "logo": "https://kaizencode.com.mx/apple-touch-icon.png",
+            "image": "https://kaizencode.com.mx/og.png",
+            "description": "Estudio de ingeniería de software en México: CRM a la medida, agentes de WhatsApp e IA, automatización de procesos con n8n, recorridos 3D para inmuebles y plataformas web.",
+            "email": "nieto_war@hotmail.com",
+            "areaServed": ["MX", "Latinoamérica", "US"],
+            "address": { "@type": "PostalAddress", "addressCountry": "MX" },
+            "founder": [
+              { "@type": "Person", "name": "Oscar Emiliano Nieto Guerra" },
+              { "@type": "Person", "name": "Juan Antonio Sánchez Jiménez" },
+              { "@type": "Person", "name": "Mauricio Israel Mondragón Chávez" },
+              { "@type": "Person", "name": "Amoxhua Ochoa Contreras" }
+            ],
+            "knowsAbout": [
+              "Desarrollo de software a la medida",
+              "CRM",
+              "Automatización con n8n",
+              "Chatbots de WhatsApp",
+              "Inteligencia artificial",
+              "Recorridos virtuales 3D",
+              "Cloud y DevOps"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "nieto_war@hotmail.com",
+              "telephone": "+52-593-103-1187",
+              "availableLanguage": ["es", "en"]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://kaizencode.com.mx/#website",
+            "url": "https://kaizencode.com.mx/",
+            "name": "Kaizen Code",
+            "inLanguage": "es-MX",
+            "publisher": { "@id": "https://kaizencode.com.mx/#organization" }
+          }
+        ]
       }
     </script>
   </head>
   <body>
-    <noscript>Kaizen Code requiere JavaScript para mostrar este sitio.</noscript>
-    <div id="root"></div>
+    <div id="root"><!--app--></div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

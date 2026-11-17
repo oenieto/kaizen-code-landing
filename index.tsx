@@ -10,7 +10,7 @@ if (!rootElement) {
   throw new Error('Could not find root element to mount to');
 }
 
-ReactDOM.createRoot(rootElement).render(
+const app = (
   <React.StrictMode>
     <BrowserRouter>
       {/* Honour the OS "reduce motion" setting for every framer-motion animation. */}
@@ -18,5 +18,13 @@ ReactDOM.createRoot(rootElement).render(
         <App />
       </MotionConfig>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+
+// Production pages are prerendered (scripts/prerender.mjs): attach to that HTML.
+// In dev the root is empty, so render from scratch.
+if (rootElement.firstElementChild) {
+  ReactDOM.hydrateRoot(rootElement, app);
+} else {
+  ReactDOM.createRoot(rootElement).render(app);
+}

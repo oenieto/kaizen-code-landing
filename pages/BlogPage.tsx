@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { PageHeader } from '../components/PageHeader';
@@ -17,10 +17,6 @@ const Meta: React.FC<{ post: Post }> = ({ post }) => (
 
 export const BlogPage: React.FC = () => {
   const [active, setActive] = useState(ALL);
-
-  useEffect(() => {
-    document.title = 'Blog — Kaizen Code';
-  }, []);
 
   const featured = posts.find((p) => p.featured);
   const list = useMemo(

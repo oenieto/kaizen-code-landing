@@ -9,9 +9,17 @@ const commitments = ['Código tuyo desde el día uno.', 'Software funcionando ca
 export const Hero: React.FC = () => (
   <section className="bg-ink text-white" aria-labelledby="hero-title">
     <div className="container-page flex min-h-[92svh] flex-col justify-between pt-36 pb-14 sm:pt-44 lg:pb-16">
-      <h1 id="hero-title" className="display-1 max-w-[17ch] text-balance">
-        Somos un estudio de ingeniería que construye software para producción, no para la demo.
-      </h1>
+      <div>
+        {/* Brand + primary keyword, visible and above the H1, for search and context. */}
+        <p className="mb-6 text-[15px] text-white/60">Kaizen Code · Desarrollo de software a la medida en México</p>
+        {/* Spans the full width on large screens so the statement stays the page's face. */}
+        <h1
+          id="hero-title"
+          className="max-w-[17ch] text-[clamp(2.6rem,6.3vw,7.75rem)] leading-[1.02] font-medium tracking-[-0.03em] text-balance lg:max-w-none"
+        >
+          Somos un estudio de ingeniería que construye software para producción, no para la demo.
+        </h1>
+      </div>
 
       <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:items-end">
         <ul className="grid gap-4 sm:grid-cols-3 lg:col-span-6" aria-label="Compromisos">

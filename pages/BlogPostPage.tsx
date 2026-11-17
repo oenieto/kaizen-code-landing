@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { posts } from '../data/blog';
@@ -7,10 +7,6 @@ export const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const index = posts.findIndex((p) => p.slug === slug);
   const post = index >= 0 ? posts[index] : undefined;
-
-  useEffect(() => {
-    document.title = post ? `${post.title} — Kaizen Code` : 'Artículo no encontrado — Kaizen Code';
-  }, [post]);
 
   if (!post) {
     return (

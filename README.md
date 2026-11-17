@@ -18,10 +18,24 @@ npm run typecheck
 npm run build && npm run preview
 ```
 
+## Build y SEO
+
+`npm run build` hace tres pasos:
+
+1. `vite build`: bundle del cliente en `dist/`.
+2. `vite build --ssr entry-server.tsx`: bundle de servidor temporal en `dist-ssr/`.
+3. `node scripts/prerender.mjs`: renderiza cada ruta (home, páginas y cada artículo del blog) a HTML estático
+   (`dist/about.html`, `dist/blog/<slug>.html`, …) con su título, descripción, canonical, Open Graph y JSON-LD,
+   más `404.html` y `sitemap.xml`. En el navegador, React hidrata ese HTML.
+
+Los metadatos de cada ruta viven en `data/seo.ts` (cliente y prerender usan la misma fuente). Cloudflare sirve
+`dist/` con `not_found_handling: "404-page"`, así que las rutas inexistentes responden 404 real.
+
 ## Estructura
 
 ```
-data/site.ts          Contenido de la landing (servicios, proyectos, estándares, FAQ, contacto)
+data/site.ts          Contenido de la landing (soluciones, servicios, proyectos, estándares, FAQ, contacto)
+data/seo.ts           Metadatos por ruta (título, descripción) y URL del sitio
 data/blog-posts.json  Artículos del blog (actualizado por .github/workflows/update-blog.yml)
 components/           Secciones de la landing y layout compartido
 pages/                Rutas
@@ -32,6 +46,6 @@ Para cambiar textos, proyectos o estados de proyecto, edita `data/site.ts`; los 
 
 ## Diseño
 
-- Tokens semánticos (`canvas`, `surface`, `line`, `fg`, `muted`, `accent`) definidos como variables CSS que cambian con la clase `.dark`.
-- El tema se resuelve antes del primer pintado (script en `index.html`) para evitar parpadeo; se guarda en `localStorage`.
+- Estilo editorial blanco y negro con un acento bermellón; tipografía Inter Tight.
+- Tokens en `index.css` (`canvas`, `ink`, `paper`, `line`, `rule`, `fg`, `muted`, `accent`).
 - Objetivo de accesibilidad: WCAG 2.2 AA (foco visible, skip link, formularios con errores asociados, `<details>` nativo para FAQ).

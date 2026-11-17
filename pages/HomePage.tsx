@@ -4,6 +4,7 @@ import { Hero } from '../components/Hero';
 import { Services } from '../components/Services';
 import { Projects } from '../components/Projects';
 import { WhyUs } from '../components/WhyUs';
+import { Solutions } from '../components/Solutions';
 import { Engineering } from '../components/Engineering';
 import { Process } from '../components/Process';
 import { Engagements } from '../components/Engagements';
@@ -19,13 +20,10 @@ export const HomePage: React.FC = () => {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
   }, [hash]);
 
-  useEffect(() => {
-    document.title = 'Kaizen Code — Ingeniería de software para productos que deben funcionar';
-  }, []);
-
   return (
     <>
       <Hero />
+      <Solutions />
       <Projects />
       <WhyUs />
       <Services />

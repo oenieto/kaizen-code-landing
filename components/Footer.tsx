@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CONTACT } from '../data/site';
 
 const site = [
+  { label: 'Soluciones', to: '/#solutions' },
   { label: 'Qué hacemos', to: '/#services' },
   { label: 'Trabajo', to: '/#work' },
   { label: 'Nosotros', to: '/about' },

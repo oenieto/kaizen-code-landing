@@ -3,6 +3,9 @@
  * without touching layout, and so the shape of each section is typed.
  */
 
+/** Fired by solution CTAs so the contact form can preselect the project type. */
+export const SELECT_PROJECT_TYPE = 'kc:select-project-type';
+
 export const CONTACT = {
   email: 'nieto_war@hotmail.com',
   whatsapp: '525931031187',
@@ -310,5 +313,100 @@ export const faqs = [
   {
     q: '¿Firman acuerdos de confidencialidad?',
     a: 'Sí. Podemos firmar un NDA antes de revisar código, documentos o datos de tu empresa.',
+  },
+];
+
+export interface Solution {
+  slug: string;
+  name: string;
+  /** Who it is for, in the client's words. */
+  audience: string;
+  pitch: string;
+  includes: string[];
+  stack: string;
+}
+
+/**
+ * Productised solutions we sell and adapt per client. Technology choices follow
+ * current market leaders for each category (researched November 2026).
+ */
+export const solutions: Solution[] = [
+  {
+    slug: 'crm',
+    name: 'CRM a la medida',
+    audience: 'Inmobiliarias, despachos, distribuidoras y equipos de ventas',
+    pitch:
+      'Tu proceso de ventas en un solo lugar, con los campos, etapas y reportes que tu negocio usa de verdad, y sin pagar licencias por usuario.',
+    includes: [
+      'Embudo de ventas, contactos y seguimiento por vendedor',
+      'WhatsApp y correo integrados en el historial del cliente',
+      'Reportes de conversión y tareas automáticas',
+    ],
+    stack: 'Twenty CRM (open source) · TypeScript · PostgreSQL',
+  },
+  {
+    slug: 'tours-3d',
+    name: 'Recorridos 3D para inmuebles',
+    audience: 'Desarrolladoras e inmobiliarias',
+    pitch:
+      'Vende antes de que el cliente visite: recorridos fotorrealistas en el navegador, capturados con un video del celular o una cámara 360.',
+    includes: [
+      'Recorrido 3D navegable en web y móvil, sin apps',
+      'Plano interactivo con disponibilidad y precio por unidad',
+      'Página propia por desarrollo, lista para anuncios',
+    ],
+    stack: 'Gaussian Splatting · Three.js · WebGL',
+  },
+  {
+    slug: 'whatsapp',
+    name: 'Agente de ventas en WhatsApp',
+    audience: 'Clínicas, restaurantes, tiendas y servicios',
+    pitch:
+      'Responde 24/7, agenda citas, toma pedidos y califica prospectos en el canal que tus clientes ya usan. Cuando hace falta, pasa la conversación a una persona.',
+    includes: [
+      'Número oficial con la API de WhatsApp de Meta',
+      'Respuestas basadas en tu catálogo, precios y horarios',
+      'Traspaso a humano con todo el contexto',
+    ],
+    stack: 'WhatsApp Cloud API · LLM con guardrails · Node.js',
+  },
+  {
+    slug: 'n8n',
+    name: 'Automatización de procesos',
+    audience: 'Equipos de operación, administración y ventas',
+    pitch:
+      'Eliminamos el trabajo repetitivo entre tus sistemas: de un formulario al CRM, de una factura al sistema contable, de los datos a un reporte semanal.',
+    includes: [
+      'Flujos entre tus herramientas: Sheets, CRM, ERP, correo',
+      'Agentes de IA que clasifican, resumen y extraen datos',
+      'Servidor propio: tus datos no salen de tu infraestructura',
+    ],
+    stack: 'n8n self-hosted · Agentes de IA · Webhooks',
+  },
+  {
+    slug: 'voz',
+    name: 'Agente de voz telefónico',
+    audience: 'Negocios con alto volumen de llamadas',
+    pitch:
+      'Un agente que contesta y hace llamadas con voz natural: agenda, confirma citas, califica prospectos y transfiere a tu equipo cuando es necesario.',
+    includes: [
+      'Atención telefónica en español, a cualquier hora',
+      'Conectado a tu agenda y a tu CRM',
+      'Grabación, transcripción y resumen de cada llamada',
+    ],
+    stack: 'Vapi / Retell · Voces de ElevenLabs · Twilio',
+  },
+  {
+    slug: 'documentos',
+    name: 'Lectura inteligente de documentos',
+    audience: 'Contabilidad, legal, recursos humanos y logística',
+    pitch:
+      'Convierte facturas, contratos, identificaciones y comprobantes en datos estructurados que entran directo a tus sistemas, con validación humana donde importa.',
+    includes: [
+      'Extracción de CFDI, PDF, fotos y escaneos',
+      'Validación contra reglas de negocio y el SAT',
+      'Bandeja de revisión para los casos dudosos',
+    ],
+    stack: 'Claude API · OCR · Python',
   },
 ];

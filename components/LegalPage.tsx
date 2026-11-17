@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from './PageHeader';
 
@@ -17,10 +17,6 @@ interface Props {
 
 /** Shared layout for legal documents: sticky table of contents + readable column. */
 export const LegalPage: React.FC<Props> = ({ title, subtitle, sections, ctaTitle }) => {
-  useEffect(() => {
-    document.title = `${title} — Kaizen Code`;
-  }, [title]);
-
   return (
     <>
       <PageHeader label="Legal" title={title} intro={subtitle} />

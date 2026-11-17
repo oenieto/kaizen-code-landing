@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CONTACT } from '../data/site';
+import { CONTACT, SELECT_PROJECT_TYPE, solutions } from '../data/site';
 import { Reveal } from './Reveal';
 
 const PROJECT_TYPES = [
+  ...solutions.map((s) => s.name),
   'Plataforma web o SaaS',
   'API o integración',
   'IA aplicada',
@@ -47,6 +48,16 @@ export const Contact: React.FC = () => {
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+
+  // Solution CTAs preselect the matching project type.
+  useEffect(() => {
+    const onSelect = (e: Event) => {
+      const type = (e as CustomEvent<string>).detail;
+      if (PROJECT_TYPES.includes(type)) setFields((f) => ({ ...f, type }));
+    };
+    window.addEventListener(SELECT_PROJECT_TYPE, onSelect);
+    return () => window.removeEventListener(SELECT_PROJECT_TYPE, onSelect);
+  }, []);
 
   const set = (k: keyof Fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFields((f) => ({ ...f, [k]: e.target.value }));

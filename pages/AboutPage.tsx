@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { PageHeader } from '../components/PageHeader';
@@ -22,9 +22,16 @@ const team = [
   {
     name: 'Mauricio Israel Mondragón Chávez',
     initials: 'MM',
-    role: 'Ingeniero de software',
+    role: 'Cofundador',
     focus: 'Full stack y calidad',
     bio: 'Desarrollador full stack con atención al detalle. Se asegura de que cada entrega esté probada, revisada y lista para que otro equipo la mantenga.',
+  },
+  {
+    name: 'Amoxhua Ochoa Contreras',
+    initials: 'AO',
+    role: 'Cofundador',
+    focus: 'Bases de datos y desarrollo de software',
+    bio: 'Desarrollador de software a cargo de la gestión de bases de datos: modelado, rendimiento de consultas, respaldos y migraciones seguras para que los datos de cada cliente estén íntegros y disponibles.',
   },
 ];
 
@@ -48,10 +55,6 @@ const principles = [
 ];
 
 export const AboutPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Nosotros — Kaizen Code';
-  }, []);
-
   return (
     <>
       <PageHeader
@@ -95,15 +98,15 @@ export const AboutPage: React.FC = () => {
       </Section>
 
       <Section id="team" title="Equipo">
-        <div className="grid gap-x-8 gap-y-14 lg:grid-cols-3">
+        <div className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.05}>
               <div className="flex aspect-[4/5] items-end bg-paper p-6 sm:p-8" aria-hidden="true">
-                <span className="text-[clamp(4rem,9vw,7rem)] leading-none font-medium tracking-[-0.04em]">{m.initials}</span>
+                <span className="text-[clamp(4rem,7vw,6rem)] leading-none font-medium tracking-[-0.04em]">{m.initials}</span>
               </div>
               <h3 className="mt-4 text-[15px] font-medium tracking-[0.02em] uppercase">{m.name}</h3>
               <p className="mt-1 text-[15px] text-muted">
-                {m.role} · {m.focus}
+                {[m.role, m.focus].filter(Boolean).join(' · ')}
               </p>
               <p className="mt-4 text-[15px] leading-[1.75] text-muted">{m.bio}</p>
             </Reveal>
