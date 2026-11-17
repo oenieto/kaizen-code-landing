@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
+import { PageHeader } from '../components/PageHeader';
 import { posts, type Post } from '../data/blog';
 
 const ALL = 'Todos';
 const categories = [ALL, ...Array.from(new Set(posts.map((p) => p.category)))];
 
 const Meta: React.FC<{ post: Post }> = ({ post }) => (
-  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] text-faint">
-    <span className="uppercase tracking-[0.12em] text-accent">{post.category}</span>
+  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-faint">
+    <span className="text-fg">{post.category}</span>
     <span>{post.date}</span>
     <span>{post.readTime}</span>
   </p>
@@ -30,58 +30,46 @@ export const BlogPage: React.FC = () => {
 
   return (
     <>
-      <header className="pt-32 pb-12 sm:pt-40 sm:pb-16">
-        <div className="container-page">
-          <p className="eyebrow">Blog</p>
-          <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-6xl">
-            Notas sobre software, infraestructura e IA.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-            Una selección semanal de lo relevante en tecnología, curada y resumida en español con un pipeline automatizado
-            de GitHub Actions y la API de Claude.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        label="Blog"
+        title="Notas sobre software, infraestructura e IA."
+        intro="Una selección semanal de lo relevante en tecnología, curada y resumida en español con un pipeline automatizado de GitHub Actions y la API de Claude."
+      />
 
       {featured && (
-        <section className="border-t border-line py-12 sm:py-16" aria-label="Artículo destacado">
+        <section className="py-20 sm:py-28" aria-label="Artículo destacado">
           <div className="container-page">
-            <Link to={`/blog/${featured.slug}`} className="group grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-16">
-              <div>
+            <Link to={`/blog/${featured.slug}`} className="group grid gap-8 lg:grid-cols-12">
+              <div className="lg:col-span-7">
                 <p className="eyebrow">Destacado</p>
-                <h2 className="mt-4 text-2xl leading-snug font-semibold tracking-tight text-balance group-hover:underline group-hover:decoration-line-strong group-hover:underline-offset-4 sm:text-3xl">
+                <h2 className="display-2 mt-4 text-balance group-hover:underline group-hover:decoration-2 group-hover:underline-offset-8">
                   {featured.title}
                 </h2>
               </div>
-              <div>
+              <div className="ruled self-end lg:col-span-4 lg:col-start-9">
                 <Meta post={featured} />
-                <p className="mt-4 leading-relaxed text-muted">{featured.excerpt}</p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium">
-                  Leer artículo
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                </span>
+                <p className="mt-4 text-[15px] leading-[1.75] text-muted">{featured.excerpt}</p>
+                <span className="link mt-5 inline-block">Leer artículo</span>
               </div>
             </Link>
           </div>
         </section>
       )}
 
-      <section className="border-t border-line py-12 sm:py-16" aria-labelledby="all-posts">
+      <section className="border-t border-line py-20 sm:py-28" aria-labelledby="all-posts">
         <div className="container-page">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <h2 id="all-posts" className="text-lg font-semibold tracking-tight">
-              Todos los artículos
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <h2 id="all-posts" className="display-2">
+              Artículos
             </h2>
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoría">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-[15px]" role="group" aria-label="Filtrar por categoría">
               {categories.map((c) => (
                 <button
                   key={c}
                   type="button"
                   onClick={() => setActive(c)}
                   aria-pressed={active === c}
-                  className={`min-h-9 rounded-full border px-3.5 text-sm transition-colors ${
-                    active === c ? 'border-fg bg-fg text-canvas' : 'border-line-strong text-muted hover:text-fg'
-                  }`}
+                  className={`min-h-9 ${active === c ? 'underline decoration-2 underline-offset-[6px]' : 'text-muted hover:text-fg'}`}
                 >
                   {c}
                 </button>
@@ -90,30 +78,20 @@ export const BlogPage: React.FC = () => {
           </div>
 
           {list.length === 0 ? (
-            <p className="mt-10 border-t border-line py-16 text-center text-muted">
-              No hay artículos en esta categoría todavía.
-            </p>
+            <p className="mt-12 border-t border-rule py-16 text-muted">No hay artículos en esta categoría todavía.</p>
           ) : (
-            <ul className="mt-8 divide-y divide-line border-y border-line">
+            <ul className="mt-12 border-b border-rule">
               {list.map((post, i) => (
-                <li key={post.id}>
+                <li key={post.id} className="border-t border-rule">
                   <Reveal delay={i * 0.03}>
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="group grid gap-3 py-7 sm:grid-cols-[12rem_1fr_auto] sm:items-baseline sm:gap-8"
-                    >
-                      <Meta post={post} />
-                      <div>
-                        <h3 className="text-lg leading-snug font-medium tracking-tight group-hover:underline group-hover:decoration-line-strong group-hover:underline-offset-4">
-                          {post.title}
-                        </h3>
-                        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">{post.excerpt}</p>
+                    <Link to={`/blog/${post.slug}`} className="group grid gap-3 py-8 lg:grid-cols-12 lg:gap-8">
+                      <div className="lg:col-span-3">
+                        <Meta post={post} />
                       </div>
-                      <ArrowRight
-                        size={16}
-                        className="hidden text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-fg sm:block"
-                        aria-hidden="true"
-                      />
+                      <h3 className="text-xl leading-snug font-medium tracking-[-0.01em] group-hover:underline group-hover:underline-offset-4 lg:col-span-5">
+                        {post.title}
+                      </h3>
+                      <p className="line-clamp-3 text-[15px] leading-[1.7] text-muted lg:col-span-4">{post.excerpt}</p>
                     </Link>
                   </Reveal>
                 </li>

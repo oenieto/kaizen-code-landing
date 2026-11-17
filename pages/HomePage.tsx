@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Hero } from '../components/Hero';
 import { Services } from '../components/Services';
 import { Projects } from '../components/Projects';
+import { WhyUs } from '../components/WhyUs';
 import { Engineering } from '../components/Engineering';
 import { Process } from '../components/Process';
 import { Engagements } from '../components/Engagements';
@@ -25,8 +26,9 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
-      <Services />
       <Projects />
+      <WhyUs />
+      <Services />
       <Engineering />
       <Process />
       <Engagements />

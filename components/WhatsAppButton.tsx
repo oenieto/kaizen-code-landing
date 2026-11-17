@@ -15,9 +15,9 @@ export const WhatsAppButton: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp (se abre en una pestaña nueva)"
-      className="fixed right-4 bottom-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-line bg-surface text-fg shadow-lg transition-colors hover:border-line-strong hover:text-[#25D366] sm:right-6 sm:bottom-6"
+      className="fixed right-5 bottom-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-accent text-black transition-transform hover:scale-105 sm:right-8 sm:bottom-8"
     >
-      <WhatsAppIcon className="h-5 w-5" />
+      <WhatsAppIcon className="h-6 w-6" />
     </a>
   );
 };

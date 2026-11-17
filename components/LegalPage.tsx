@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { PageHeader } from './PageHeader';
 
 export interface LegalSection {
   id: string;
@@ -22,19 +23,13 @@ export const LegalPage: React.FC<Props> = ({ title, subtitle, sections, ctaTitle
 
   return (
     <>
-      <header className="pt-32 pb-12 sm:pt-40 sm:pb-16">
-        <div className="container-page">
-          <p className="eyebrow">Legal</p>
-          <h1 className="mt-5 text-4xl leading-tight font-semibold tracking-[-0.03em] sm:text-5xl">{title}</h1>
-          <p className="mt-4 text-muted">{subtitle}</p>
-        </div>
-      </header>
+      <PageHeader label="Legal" title={title} intro={subtitle} />
 
-      <div className="border-t border-line">
-        <div className="container-page grid gap-10 py-14 lg:grid-cols-[16rem_1fr] lg:gap-16 lg:py-20">
-          <nav aria-label="Contenido" className="lg:sticky lg:top-24 lg:self-start">
+      <div>
+        <div className="container-page grid gap-12 py-20 lg:grid-cols-12 lg:gap-8 lg:py-28">
+          <nav aria-label="Contenido" className="ruled lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
             <p className="eyebrow">Contenido</p>
-            <ol className="mt-4 space-y-2 text-sm">
+            <ol className="mt-4 space-y-2 text-[15px]">
               {sections.map((s) => (
                 <li key={s.id}>
                   <a href={`#${s.id}`} className="text-muted transition-colors hover:text-fg">
@@ -45,24 +40,24 @@ export const LegalPage: React.FC<Props> = ({ title, subtitle, sections, ctaTitle
             </ol>
           </nav>
 
-          <div className="max-w-2xl space-y-12">
+          <div className="max-w-2xl space-y-14 lg:col-span-7 lg:col-start-6">
             {sections.map((s) => (
-              <section key={s.id} id={s.id} aria-labelledby={`${s.id}-h`}>
-                <h2 id={`${s.id}-h`} className="text-lg font-semibold tracking-tight">
+              <section key={s.id} id={s.id} aria-labelledby={`${s.id}-h`} className="ruled">
+                <h2 id={`${s.id}-h`} className="text-[17px] font-semibold tracking-[-0.01em]">
                   {s.title}
                 </h2>
-                <div className="mt-3 text-[15px] leading-relaxed whitespace-pre-line text-muted">{s.content}</div>
+                <div className="mt-4 text-[15px] leading-[1.8] whitespace-pre-line text-muted">{s.content}</div>
               </section>
             ))}
           </div>
         </div>
       </div>
 
-      <section className="border-t border-line py-16">
-        <div className="container-page flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-2xl font-semibold tracking-tight">{ctaTitle}</h2>
-          <Link to="/#contact" className="btn-secondary shrink-0">
-            Contactar
+      <section className="border-t border-line py-20">
+        <div className="container-page flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="display-2 max-w-[16ch]">{ctaTitle}</h2>
+          <Link to="/#contact" className="link shrink-0 text-lg">
+            Escríbenos
           </Link>
         </div>
       </section>

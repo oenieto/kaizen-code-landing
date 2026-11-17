@@ -3,57 +3,39 @@
 @source './pages';
 @source './App.tsx';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 /*
- * Design tokens. Semantic names (canvas, surface, line, fg, muted, accent) switch
- * with the `.dark` class; components use only these.
+ * Design tokens. Editorial, Swiss-style system: white paper, black ink, one accent
+ * (vermillion, 朱) used sparingly. Structure comes from hairline rules and a visible
+ * column grid, not from cards, shadows or rounded corners.
  */
 :root {
   --canvas: #ffffff;
-  --surface: #ffffff;
-  --subtle: #f5f5f4;
-  --line: #e7e7e4;
-  --line-strong: #d4d4d0;
-  --fg: #111213;
-  --muted: #5d5f63;
-  --faint: #8a8c90;
-  --accent: #3c6e47;
-  --accent-fg: #ffffff;
-  --accent-soft: #e6efe7;
+  --paper: #f2f0eb;
+  --ink: #121212;
+  --line: #e3e3e1;
+  --rule: #121212;
+  --fg: #121212;
+  --muted: #5b5b5b;
+  --faint: #8a8a8a;
+  --on-ink-muted: #a6a6a6;
+  --accent: #e5482d;
   --warn: #9a6b00;
 }
 
-.dark {
-  --canvas: #0b0c0d;
-  --surface: #111214;
-  --subtle: #17181b;
-  --line: #222428;
-  --line-strong: #2f3236;
-  --fg: #ececec;
-  --muted: #9a9ca2;
-  --faint: #6b6e74;
-  --accent: #8fc59a;
-  --accent-fg: #0b0c0d;
-  --accent-soft: #15211a;
-  --warn: #d9a441;
-}
-
 @theme inline {
-  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-canvas: var(--canvas);
-  --color-surface: var(--surface);
-  --color-subtle: var(--subtle);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
   --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
+  --color-rule: var(--rule);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
+  --color-on-ink-muted: var(--on-ink-muted);
   --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
-  --color-accent-soft: var(--accent-soft);
   --color-warn: var(--warn);
 }
 
@@ -67,20 +49,19 @@
     background: var(--canvas);
     color: var(--fg);
     font-family: var(--font-sans);
-    font-feature-settings: 'ss01', 'cv11';
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
     background: var(--accent);
-    color: var(--accent-fg);
+    color: #000;
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -91,23 +72,43 @@
 }
 
 @utility container-page {
-  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12;
 }
 
+/* Statement headings: large, medium weight, tight. */
+@utility display-1 {
+  @apply text-[clamp(2.6rem,5.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.025em];
+}
+@utility display-2 {
+  @apply text-[clamp(2.25rem,4.6vw,4.4rem)] leading-[1.05] font-medium tracking-[-0.025em];
+}
+
+/* Small label above a block. */
 @utility eyebrow {
-  @apply font-mono text-xs uppercase tracking-[0.14em] text-faint;
+  @apply text-sm font-medium text-muted;
+}
+
+/* Text link with an underline that thickens on hover — the primary action style. */
+@utility link {
+  @apply underline decoration-1 underline-offset-[5px] transition-[text-decoration-thickness] hover:decoration-2;
+}
+
+/* Rule-topped block (title over a black hairline), used for every list of items. */
+@utility ruled {
+  @apply border-t border-rule pt-5;
 }
 
 @utility btn {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 text-sm font-medium transition-colors;
+  @apply inline-flex min-h-12 items-center justify-center gap-2 px-6 text-[15px] font-medium transition-colors;
 }
 @utility btn-primary {
-  @apply btn bg-fg text-canvas hover:opacity-90;
+  @apply btn bg-fg text-canvas hover:bg-accent hover:text-black;
 }
 @utility btn-secondary {
-  @apply btn border border-line-strong text-fg hover:bg-subtle;
+  @apply btn border border-rule text-fg hover:bg-fg hover:text-canvas;
 }
 
+/* Underlined form field; colours inherit so it works on light and ink blocks. */
 @utility field {
-  @apply block w-full rounded-md border border-line-strong bg-surface px-3.5 py-2.5 text-sm text-fg placeholder:text-faint transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25 aria-invalid:border-red-500 aria-invalid:focus:ring-red-500/25;
+  @apply block w-full border-0 border-b border-current/40 bg-transparent px-0 py-3 text-base text-current placeholder:text-current/45 transition-colors focus:border-current focus:outline-none aria-invalid:border-accent;
 }

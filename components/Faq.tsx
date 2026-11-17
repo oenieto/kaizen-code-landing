@@ -1,25 +1,30 @@
 import React from 'react';
-import { Plus } from 'lucide-react';
 import { faqs } from '../data/site';
-import { Section } from './Section';
+import { Reveal } from './Reveal';
 
 export const Faq: React.FC = () => (
-  <Section id="faq" index="06" label="Preguntas" title="Lo que suelen preguntarnos.">
-    {/* Native <details>: keyboard and screen-reader support without custom ARIA. */}
-    <div className="divide-y divide-line border-y border-line">
-      {faqs.map((f) => (
-        <details key={f.q} className="group">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-base font-medium [&::-webkit-details-marker]:hidden">
-            {f.q}
-            <Plus
-              size={18}
-              className="shrink-0 text-faint transition-transform duration-200 group-open:rotate-45"
-              aria-hidden="true"
-            />
-          </summary>
-          <p className="max-w-3xl pb-6 text-[15px] leading-relaxed text-muted">{f.a}</p>
-        </details>
-      ))}
+  <section id="faq" aria-labelledby="faq-title" className="border-t border-line py-24 sm:py-32">
+    <div className="container-page grid gap-12 lg:grid-cols-12">
+      <Reveal className="lg:col-span-5">
+        <h2 id="faq-title" className="display-2 lg:sticky lg:top-28">
+          Preguntas frecuentes
+        </h2>
+      </Reveal>
+
+      {/* Native <details>: keyboard and screen-reader support without custom ARIA. */}
+      <div className="border-b border-rule lg:col-span-7">
+        {faqs.map((f) => (
+          <details key={f.q} className="group border-t border-rule">
+            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-6 text-lg font-medium tracking-[-0.01em] [&::-webkit-details-marker]:hidden">
+              {f.q}
+              <span className="shrink-0 text-2xl leading-none font-normal transition-transform duration-200 group-open:rotate-45" aria-hidden="true">
+                +
+              </span>
+            </summary>
+            <p className="max-w-2xl pb-7 text-[15px] leading-[1.8] text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
     </div>
-  </Section>
+  </section>
 );

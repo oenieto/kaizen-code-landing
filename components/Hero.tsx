@@ -1,63 +1,36 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 
-const commitments = [
-  { k: 'Propiedad', v: 'Código en tu repositorio desde el día uno' },
-  { k: 'Cadencia', v: 'Software funcionando cada dos semanas' },
-  { k: 'Decisiones', v: 'Arquitectura documentada en ADRs' },
-  { k: 'Continuidad', v: 'Garantía y soporte post-lanzamiento' },
-];
+const commitments = ['Código tuyo desde el día uno.', 'Software funcionando cada dos semanas.', 'Decisiones documentadas.'];
 
 /**
- * Full-width typographic hero: the headline is the page's face. No entrance
- * animation so above-the-fold content paints immediately (LCP).
+ * Ink block with a statement headline. No entrance animation so above-the-fold
+ * content paints immediately (LCP).
  */
 export const Hero: React.FC = () => (
-  <section className="pt-32 sm:pt-40" aria-labelledby="hero-title">
-    <div className="container-page">
-      <p className="eyebrow">Estudio de ingeniería de software · México</p>
-
-      <h1
-        id="hero-title"
-        className="mt-6 text-[clamp(2.75rem,9.2vw,8.75rem)] leading-[0.95] font-semibold tracking-[-0.045em]"
-      >
-        Software de producción,
-        <br />
-        <span className="text-faint">no prototipos.</span>
+  <section className="bg-ink text-white" aria-labelledby="hero-title">
+    <div className="container-page flex min-h-[92svh] flex-col justify-between pt-36 pb-14 sm:pt-44 lg:pb-16">
+      <h1 id="hero-title" className="display-1 max-w-[17ch] text-balance">
+        Somos un estudio de ingeniería que construye software para producción, no para la demo.
       </h1>
 
-      <div className="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-[minmax(0,36rem)_1fr] lg:items-end">
-        <p className="text-lg leading-relaxed text-pretty text-muted sm:text-xl">
-          Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA para empresas cuyo sistema no
-          puede fallar. Tipado, probado, observable y tuyo desde el primer commit.
-        </p>
-        <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-          <a href="#contact" className="btn-primary group">
-            Agendar llamada técnica
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-          </a>
-          <a href="#work" className="btn-secondary">
-            Ver trabajo
+      <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:items-end">
+        <ul className="grid gap-4 sm:grid-cols-3 lg:col-span-6" aria-label="Compromisos">
+          {commitments.map((c) => (
+            <li key={c} className="border-t border-white/30 pt-3 text-[15px] leading-snug">
+              {c}
+            </li>
+          ))}
+        </ul>
+
+        <div className="lg:col-span-5 lg:col-start-8">
+          <p className="text-[15px] leading-[1.75] text-white/85">
+            Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA para empresas cuyo sistema no
+            puede fallar. Trabajamos con tu equipo desde la primera semana, con avances que puedes usar y no sólo ver.
+          </p>
+          <a href="#process" className="link mt-5 inline-block text-[15px]">
+            Conoce cómo trabajamos
           </a>
         </div>
-      </div>
-    </div>
-
-    <div className="mt-20 border-y border-line sm:mt-24">
-      <div className="container-page">
-        <dl className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
-        {commitments.map((c, i) => (
-          <div
-            key={c.k}
-            className="bg-canvas py-6 sm:pr-6 sm:even:pl-6 lg:py-8 lg:pl-6 lg:first:pl-0"
-          >
-            <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
-              <span className="text-accent">0{i + 1}</span> {c.k}
-            </dt>
-            <dd className="mt-2 text-[15px] leading-snug text-fg">{c.v}</dd>
-          </div>
-        ))}
-        </dl>
       </div>
     </div>
   </section>

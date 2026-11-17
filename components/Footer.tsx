@@ -2,67 +2,62 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT } from '../data/site';
 
-const columns = [
-  {
-    title: 'Servicios',
-    links: [
-      { label: 'Plataformas web', href: '/#services' },
-      { label: 'IA aplicada', href: '/#services' },
-      { label: 'Auditoría técnica', href: '/#engagement' },
-    ],
-  },
-  {
-    title: 'Empresa',
-    links: [
-      { label: 'Nosotros', href: '/about' },
-      { label: 'Trabajo', href: '/#work' },
-      { label: 'Blog', href: '/blog' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Privacidad', href: '/privacy' },
-      { label: 'Términos', href: '/terms' },
-    ],
-  },
+const site = [
+  { label: 'Qué hacemos', to: '/#services' },
+  { label: 'Trabajo', to: '/#work' },
+  { label: 'Nosotros', to: '/about' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Escríbenos', to: '/#contact' },
+];
+
+const legal = [
+  { label: 'Privacidad', to: '/privacy' },
+  { label: 'Términos', to: '/terms' },
 ];
 
 export const Footer: React.FC = () => (
   <footer className="border-t border-line">
-    <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
-      <div>
-        <Link to="/" className="flex items-center gap-2.5">
-          <img src="/assets/kaizenlogo-removebg-preview.png" alt="" width={24} height={24} className="h-6 w-6 object-contain invert dark:invert-0" />
-          <span className="text-[15px] font-semibold tracking-tight">Kaizen Code</span>
-        </Link>
-        <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-          Ingeniería de software para productos que deben funcionar. Hecho en México.
-        </p>
-        <a href={`mailto:${CONTACT.email}`} className="mt-4 inline-block font-mono text-xs text-muted hover:text-fg">
+    <div className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-12">
+      <Link to="/" className="flex items-center gap-3 self-start lg:col-span-6" aria-label="Kaizen Code, inicio">
+        <img src="/assets/kaizenlogo-removebg-preview.png" alt="" width={40} height={40} className="h-10 w-10 object-contain invert" />
+        <span className="text-2xl font-semibold tracking-[-0.02em] uppercase">Kaizen Code</span>
+      </Link>
+
+      <address className="border-y border-rule py-4 text-[15px] leading-[1.9] not-italic lg:col-span-3 lg:col-start-10">
+        Estudio de ingeniería de software.
+        <br />
+        Hecho en México.
+        <br />
+        <a href={`mailto:${CONTACT.email}`} className="hover:underline">
           {CONTACT.email}
         </a>
-      </div>
-
-      {columns.map((col) => (
-        <nav key={col.title} aria-label={col.title}>
-          <h2 className="eyebrow">{col.title}</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {col.links.map((l) => (
-              <li key={l.label}>
-                <Link to={l.href} className="text-muted transition-colors hover:text-fg">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      ))}
+        <br />
+        <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+          WhatsApp
+        </a>
+      </address>
     </div>
 
-    <div className="container-page flex flex-col gap-2 border-t border-line py-6 text-xs text-faint sm:flex-row sm:justify-between">
-      <p>© {new Date().getFullYear()} Kaizen Code. Todos los derechos reservados.</p>
-      <p className="font-mono">改善 — mejora continua</p>
+    <div className="container-page flex flex-col gap-4 pb-28 text-[15px] sm:flex-row sm:items-center sm:justify-between sm:pb-10 sm:pr-28 lg:pr-32">
+      <nav aria-label="Sitio">
+        <ul className="flex flex-wrap gap-x-4 gap-y-1">
+          {site.map((l) => (
+            <li key={l.label}>
+              <Link to={l.to} className="hover:underline hover:underline-offset-4">
+                {l.label}.
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <nav aria-label="Legal" className="flex items-center gap-4 text-muted">
+        {legal.map((l) => (
+          <Link key={l.label} to={l.to} className="link">
+            {l.label}
+          </Link>
+        ))}
+        <span>© {new Date().getFullYear()}</span>
+      </nav>
     </div>
   </footer>
 );
