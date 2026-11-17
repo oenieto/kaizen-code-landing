@@ -63,10 +63,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="pointer-events-none absolute inset-x-0 top-0 z-50 text-white mix-blend-difference">
-        <nav className="container-page flex h-20 items-center justify-between" aria-label="Principal">
-          <Link to="/" className="pointer-events-auto flex items-center gap-2.5" aria-label="Kaizen Code, inicio">
-            <img src="/assets/kaizenlogo-removebg-preview.png" alt="" width={30} height={30} className="h-[30px] w-[30px] object-contain" />
-            <span className="text-[15px] font-semibold tracking-tight">Kaizen Code</span>
+        <nav className="container-page flex h-20 items-center justify-between lg:h-24" aria-label="Principal">
+          <Link to="/" className="pointer-events-auto flex items-center gap-3" aria-label="Kaizen Code, inicio">
+            <img src="/assets/kaizen-logo.png" alt="" width={245} height={256} className="h-10 w-auto lg:h-12" />
+            <span className="text-lg font-semibold tracking-[-0.01em] lg:text-xl">Kaizen Code</span>
           </Link>
 
           <ul className="pointer-events-auto hidden items-center gap-5 text-[15px] lg:flex">
@@ -92,7 +92,10 @@ export const Navbar: React.FC = () => {
       {isOpen && (
         <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú" className="fixed inset-0 z-[60] bg-ink text-white lg:hidden">
           <div className="container-page flex h-20 items-center justify-between">
-            <span className="text-[15px] font-semibold tracking-tight">Kaizen Code</span>
+            <span className="flex items-center gap-3 text-lg font-semibold tracking-[-0.01em]">
+              <img src="/assets/kaizen-logo.png" alt="" width={245} height={256} className="h-10 w-auto" />
+              Kaizen Code
+            </span>
             <button type="button" onClick={() => setIsOpen(false)} className="min-h-11 text-[15px]" autoFocus>
               Cerrar
             </button>

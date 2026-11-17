@@ -20,7 +20,7 @@ export const Footer: React.FC = () => (
   <footer className="border-t border-line">
     <div className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-12">
       <Link to="/" className="flex items-center gap-3 self-start lg:col-span-6" aria-label="Kaizen Code, inicio">
-        <img src="/assets/kaizenlogo-removebg-preview.png" alt="" width={40} height={40} className="h-10 w-10 object-contain invert" />
+        <img src="/assets/kaizen-logo.png" alt="" width={245} height={256} className="h-12 w-auto invert" />
         <span className="text-2xl font-semibold tracking-[-0.02em] uppercase">Kaizen Code</span>
       </Link>
 

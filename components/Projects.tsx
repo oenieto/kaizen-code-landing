@@ -12,25 +12,95 @@ const Caption: React.FC<{ project: Project }> = ({ project }) => (
   </div>
 );
 
-/** Image with the aspect ratio reserved up front, so nothing shifts while it loads (CLS). */
-const Cover: React.FC<{ project: Project; aspect: string; width: number; height: number }> = ({ project, aspect, width, height }) => (
-  <div className={`${aspect} overflow-hidden bg-paper`}>
-    <img
-      src={project.image}
-      alt={project.imageAlt}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-    />
-  </div>
-);
+/**
+ * Typographic covers: a colour field per project with its name set large and one
+ * detail that hints at what it does. Details are illustrative and hidden from
+ * assistive tech; the caption below carries the real description.
+ */
+const covers: Record<string, { className: string; detail: React.ReactNode }> = {
+  multicarrier: {
+    className: 'bg-ink text-white',
+    detail: (
+      <ul className="w-full max-w-[18rem] space-y-1.5 text-[13px]" aria-hidden="true">
+        {[
+          ['Carrier MX-01', 'Operativo', 'bg-[#4ade80]'],
+          ['Carrier MX-02', 'Operativo', 'bg-[#4ade80]'],
+          ['Enlace GDL-03', 'Alerta', 'bg-accent'],
+        ].map(([name, state, dot]) => (
+          <li key={name} className="flex items-center justify-between border-b border-white/20 pb-1.5">
+            <span>{name}</span>
+            <span className="flex items-center gap-2">
+              <span className={`h-2 w-2 rounded-full ${dot}`} />
+              {state}
+            </span>
+          </li>
+        ))}
+      </ul>
+    ),
+  },
+  folio: {
+    className: 'bg-paper text-fg',
+    detail: (
+      <div className="w-full max-w-[14rem] space-y-1.5 text-[13px]" aria-hidden="true">
+        {[
+          ['CFDI emitidos', '1,284'],
+          ['Conciliados', '1,279'],
+          ['Pendientes', '5'],
+        ].map(([k, v]) => (
+          <div key={k} className="flex justify-between border-b border-fg/20 pb-1.5">
+            <span>{k}</span>
+            <span className="tabular-nums">{v}</span>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  atlas: {
+    className: 'bg-accent text-black',
+    detail: (
+      <p className="max-w-[16rem] text-[15px] leading-snug" aria-hidden="true">
+        “La política de reembolsos aplica hasta 30 días.” <span className="align-super text-[11px]">[1]</span>
+      </p>
+    ),
+  },
+  relay: {
+    className: 'bg-[#dfe3dc] text-fg',
+    detail: (
+      <div className="w-full max-w-[15rem] space-y-2 text-[13px]" aria-hidden="true">
+        <p className="w-fit rounded-2xl rounded-bl-sm bg-white px-3 py-2">¿Tienen cita el jueves?</p>
+        <p className="ml-auto w-fit rounded-2xl rounded-br-sm bg-ink px-3 py-2 text-white">Sí, 11:00 o 16:30.</p>
+      </div>
+    ),
+  },
+  'kaizen-stack': {
+    className: 'bg-[#1f2c48] text-white',
+    detail: (
+      <p className="font-mono text-[13px]" aria-hidden="true">
+        $ pnpm create kaizen-stack
+      </p>
+    ),
+  },
+};
+
+const Cover: React.FC<{ project: Project; aspect: string }> = ({ project, aspect }) => {
+  const cover = covers[project.slug];
+  return (
+    <div className={`flex flex-col justify-between p-6 sm:p-8 ${aspect} ${cover?.className ?? 'bg-paper text-fg'}`}>
+      <p className="text-sm">{project.kind.split(' · ')[1]}</p>
+      <div className="space-y-8">
+        {cover?.detail}
+        <p className="text-[clamp(2rem,3.4vw,3.25rem)] leading-none font-medium tracking-[-0.03em]">
+          {project.name.split(' — ')[0]}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const LabItem: React.FC<{ project: Project; delay: number; tall?: boolean }> = ({ project, delay, tall }) => (
   <Reveal delay={delay}>
-    <article className="group">
-      <Cover project={project} aspect={tall ? 'aspect-[4/5]' : 'aspect-square'} width={1024} height={tall ? 1280 : 1024} />
+    <article>
+      <Cover project={project} aspect={tall ? 'aspect-[4/5]' : 'aspect-square'} />
       <Caption project={project} />
     </article>
   </Reveal>
@@ -52,8 +122,8 @@ export const Projects: React.FC = () => {
 
         <div className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
           <Reveal className="md:col-span-2">
-            <article className="group">
-              <Cover project={caseStudy} aspect="aspect-[16/10]" width={1536} height={1024} />
+            <article>
+              <Cover project={caseStudy} aspect="aspect-[16/10]" />
               <div className="mt-4 grid gap-6 lg:grid-cols-2">
                 <Caption project={caseStudy} />
                 <ul className="space-y-2 text-[15px] leading-relaxed lg:mt-4">
