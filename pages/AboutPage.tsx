@@ -4,13 +4,27 @@ import { Reveal } from '../components/Reveal';
 import { PageHeader } from '../components/PageHeader';
 import { Section, RuledItem } from '../components/Section';
 
-const team = [
+interface Member {
+  name: string;
+  initials: string;
+  role: string;
+  focus: string;
+  bio: string;
+  links?: { label: string; href: string }[];
+}
+
+const team: Member[] = [
   {
     name: 'Oscar Emiliano Nieto Guerra',
     initials: 'ON',
     role: 'Fundador',
     focus: 'Producto, arquitectura e IA aplicada',
     bio: 'Define la arquitectura y la dirección técnica de cada proyecto. Trabaja en el punto donde se cruzan diseño de producto, rendimiento e inteligencia artificial.',
+    links: [
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/oscar-emiliano-n-b21182139/' },
+      { label: 'GitHub', href: 'https://github.com/oenieto' },
+      { label: 'Instagram', href: 'https://www.instagram.com/oenieto/' },
+    ],
   },
   {
     name: 'Juan Antonio Sánchez Jiménez',
@@ -109,6 +123,17 @@ export const AboutPage: React.FC = () => {
                 {[m.role, m.focus].filter(Boolean).join(' · ')}
               </p>
               <p className="mt-4 text-[15px] leading-[1.75] text-muted">{m.bio}</p>
+              {m.links && (
+                <ul className="mt-4 flex gap-4 text-[15px]">
+                  {m.links.map((l) => (
+                    <li key={l.label}>
+                      <a href={l.href} target="_blank" rel="noopener noreferrer me" className="link">
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </Reveal>
           ))}
         </div>

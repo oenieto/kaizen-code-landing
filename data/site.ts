@@ -75,7 +75,8 @@ export interface Project {
   problem: string;
   highlights: string[];
   stack: string[];
-  image?: string;
+  image: string;
+  imageAlt: string;
 }
 
 export const caseStudy: Project = {
@@ -94,7 +95,8 @@ export const caseStudy: Project = {
     'Alertas automatizadas con reglas configurables y escalamiento por severidad.',
   ],
   stack: ['React', 'TypeScript', 'Node.js', 'WebSockets', 'AWS'],
-  image: '/assets/multicarrier-noc.webp',
+  image: '/assets/work/multicarrier.webp',
+  imageAlt: 'Ingeniero frente a una pared de monitores con mapas de red en un centro de operaciones',
 };
 
 /**
@@ -117,6 +119,8 @@ export const labProjects: Project[] = [
       'Integración con PAC detrás de una interfaz propia para cambiar de proveedor.',
     ],
     stack: ['Next.js', 'PostgreSQL', 'Workers', 'CFDI 4.0'],
+    image: '/assets/work/folio.webp',
+    imageAlt: 'Escritorio con facturas impresas, una laptop con hojas de cálculo y una taza de café',
   },
   {
     slug: 'atlas',
@@ -133,6 +137,8 @@ export const labProjects: Project[] = [
       'Suite de evaluaciones que corre en CI antes de cambiar prompts o modelos.',
     ],
     stack: ['Python', 'pgvector', 'Claude API', 'Evals'],
+    image: '/assets/work/atlas.webp',
+    imageAlt: 'Mano tomando una carpeta roja de un archivero con carpetas grises',
   },
   {
     slug: 'relay',
@@ -149,6 +155,8 @@ export const labProjects: Project[] = [
       'Bandeja compartida y métricas de conversión por canal.',
     ],
     stack: ['Node.js', 'WhatsApp Cloud API', 'Redis', 'LLM'],
+    image: '/assets/work/relay.webp',
+    imageAlt: 'Dueña de una panadería respondiendo mensajes en su celular',
   },
   {
     slug: 'kaizen-stack',
@@ -165,6 +173,8 @@ export const labProjects: Project[] = [
       'OpenTelemetry, logs estructurados y ADRs de ejemplo.',
     ],
     stack: ['TypeScript', 'Turborepo', 'Terraform', 'GitHub Actions'],
+    image: '/assets/work/kaizen-stack.webp',
+    imageAlt: 'Escritorio de desarrollador al atardecer con código en el monitor',
   },
 ];
 

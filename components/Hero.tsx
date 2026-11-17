@@ -1,9 +1,14 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
-const commitments = ['Código tuyo desde el día uno.', 'Software funcionando cada dos semanas.', 'Decisiones documentadas.'];
+const outcomes = [
+  { verb: 'Vende', what: 'CRM y recorridos 3D que convierten prospectos en clientes.' },
+  { verb: 'Atiende', what: 'Agentes de WhatsApp y voz que responden 24/7.' },
+  { verb: 'Trabaja', what: 'Automatizaciones que eliminan el trabajo repetitivo.' },
+];
 
 /**
- * Ink block with a statement headline. No entrance animation so above-the-fold
+ * Ink block with an outcome-led headline. No entrance animation so above-the-fold
  * content paints immediately (LCP).
  */
 export const Hero: React.FC = () => (
@@ -12,34 +17,38 @@ export const Hero: React.FC = () => (
       <div>
         {/* Brand + primary keyword, visible and above the H1, for search and context. */}
         <p className="mb-6 text-[15px] text-white/60">Kaizen Code · Desarrollo de software a la medida en México</p>
-        {/* Spans the full width on large screens so the statement stays the page's face. */}
         <h1
           id="hero-title"
-          className="max-w-[17ch] text-[clamp(2.6rem,6.3vw,7.75rem)] leading-[1.02] font-medium tracking-[-0.03em] text-balance lg:max-w-none"
+          className="max-w-[14ch] text-[clamp(2.9rem,7.4vw,8.75rem)] leading-[0.98] font-medium tracking-[-0.035em] text-balance"
         >
-          Somos un estudio de ingeniería que construye software para producción, no para la demo.
+          Software que vende, atiende y <span className="text-accent">trabaja por ti.</span>
         </h1>
-      </div>
 
-      <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:items-end">
-        <ul className="grid gap-4 sm:grid-cols-3 lg:col-span-6" aria-label="Compromisos">
-          {commitments.map((c) => (
-            <li key={c} className="border-t border-white/30 pt-3 text-[15px] leading-snug">
-              {c}
-            </li>
-          ))}
-        </ul>
-
-        <div className="lg:col-span-5 lg:col-start-8">
-          <p className="text-[15px] leading-[1.75] text-white/85">
-            Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA para empresas cuyo sistema no
-            puede fallar. Trabajamos con tu equipo desde la primera semana, con avances que puedes usar y no sólo ver.
+        <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <p className="max-w-xl text-lg leading-[1.6] text-white/80 lg:col-span-6">
+            Creamos CRMs, agentes de WhatsApp con IA, automatizaciones y plataformas a la medida para negocios en México.
+            Tú te enfocas en crecer; el sistema hace el resto.
           </p>
-          <a href="#process" className="link mt-5 inline-block text-[15px]">
-            Conoce cómo trabajamos
-          </a>
+          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-6 lg:justify-end">
+            <a href="#contact" className="btn group bg-white text-black hover:bg-accent">
+              Cotiza tu proyecto
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </a>
+            <a href="#solutions" className="btn border border-white/40 text-white hover:bg-white hover:text-black">
+              Ver soluciones
+            </a>
+          </div>
         </div>
       </div>
+
+      <ul className="mt-20 grid gap-6 sm:grid-cols-3" aria-label="Qué hace tu software">
+        {outcomes.map((o) => (
+          <li key={o.verb} className="border-t border-white/30 pt-4">
+            <p className="text-[15px] font-medium">{o.verb}</p>
+            <p className="mt-1 text-[15px] leading-snug text-white/70">{o.what}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 );

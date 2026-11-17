@@ -19,7 +19,7 @@ export interface RouteMeta {
 const staticRoutes: RouteMeta[] = [
   {
     path: '/',
-    title: 'Kaizen Code — Desarrollo de software a la medida en México',
+    title: 'Kaizen Code — CRM, WhatsApp con IA y automatización en México',
     description:
       'Kaizen Code es un estudio de ingeniería de software en México. Desarrollamos CRM a la medida, agentes de WhatsApp e IA, automatizaciones con n8n, recorridos 3D para inmuebles y plataformas web listas para producción.',
   },

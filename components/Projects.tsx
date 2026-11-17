@@ -2,56 +2,6 @@ import React from 'react';
 import { caseStudy, labProjects, type Project } from '../data/site';
 import { Reveal } from './Reveal';
 
-/**
- * Typographic covers for products without screenshots yet. Each one is a plain
- * colour field with the product name set large and one detail that hints at what
- * it does — no stock imagery, no fake UI.
- */
-const covers: Record<string, { className: string; detail: React.ReactNode }> = {
-  folio: {
-    className: 'bg-paper text-fg',
-    detail: (
-      <div className="w-full max-w-[14rem] space-y-1.5 text-[13px]" aria-hidden="true">
-        {[
-          ['CFDI emitidos', '1,284'],
-          ['Conciliados', '1,279'],
-          ['Pendientes', '5'],
-        ].map(([k, v]) => (
-          <div key={k} className="flex justify-between border-b border-fg/20 pb-1.5">
-            <span>{k}</span>
-            <span className="tabular-nums">{v}</span>
-          </div>
-        ))}
-      </div>
-    ),
-  },
-  atlas: {
-    className: 'bg-accent text-black',
-    detail: (
-      <p className="max-w-[16rem] text-[15px] leading-snug" aria-hidden="true">
-        “La política de reembolsos aplica hasta 30 días.” <span className="align-super text-[11px]">[1]</span>
-      </p>
-    ),
-  },
-  relay: {
-    className: 'bg-ink text-white',
-    detail: (
-      <div className="w-full max-w-[15rem] space-y-2 text-[13px]" aria-hidden="true">
-        <p className="w-fit rounded-2xl rounded-bl-sm bg-white/15 px-3 py-2">¿Tienen cita el jueves?</p>
-        <p className="ml-auto w-fit rounded-2xl rounded-br-sm bg-white px-3 py-2 text-black">Sí, 11:00 o 16:30.</p>
-      </div>
-    ),
-  },
-  'kaizen-stack': {
-    className: 'bg-[#dfe3dc] text-fg',
-    detail: (
-      <p className="font-mono text-[13px]" aria-hidden="true">
-        $ pnpm create kaizen-stack
-      </p>
-    ),
-  },
-};
-
 const Caption: React.FC<{ project: Project }> = ({ project }) => (
   <div className="mt-4">
     <h3 className="text-[15px] font-medium tracking-[0.02em] uppercase">{project.name}</h3>
@@ -62,25 +12,29 @@ const Caption: React.FC<{ project: Project }> = ({ project }) => (
   </div>
 );
 
-const LabItem: React.FC<{ project: Project; delay: number; tall?: boolean }> = ({ project, delay, tall }) => {
-  const cover = covers[project.slug];
-  return (
-    <Reveal delay={delay}>
-      <article>
-        <div
-          className={`flex flex-col justify-between p-6 sm:p-8 ${tall ? 'aspect-[4/5]' : 'aspect-square'} ${cover?.className ?? 'bg-paper'}`}
-        >
-          <p className="text-sm">{project.kind.split(' · ')[1]}</p>
-          <div className="space-y-8">
-            {cover?.detail}
-            <p className="text-[clamp(2rem,3.4vw,3.25rem)] leading-none font-medium tracking-[-0.03em]">{project.name}</p>
-          </div>
-        </div>
-        <Caption project={project} />
-      </article>
-    </Reveal>
-  );
-};
+/** Image with the aspect ratio reserved up front, so nothing shifts while it loads (CLS). */
+const Cover: React.FC<{ project: Project; aspect: string; width: number; height: number }> = ({ project, aspect, width, height }) => (
+  <div className={`${aspect} overflow-hidden bg-paper`}>
+    <img
+      src={project.image}
+      alt={project.imageAlt}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+    />
+  </div>
+);
+
+const LabItem: React.FC<{ project: Project; delay: number; tall?: boolean }> = ({ project, delay, tall }) => (
+  <Reveal delay={delay}>
+    <article className="group">
+      <Cover project={project} aspect={tall ? 'aspect-[4/5]' : 'aspect-square'} width={1024} height={tall ? 1280 : 1024} />
+      <Caption project={project} />
+    </article>
+  </Reveal>
+);
 
 export const Projects: React.FC = () => {
   const [folio, ...rest] = labProjects;
@@ -98,18 +52,8 @@ export const Projects: React.FC = () => {
 
         <div className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
           <Reveal className="md:col-span-2">
-            <article>
-              <div className="aspect-[16/10] overflow-hidden bg-ink">
-                <img
-                  src={caseStudy.image}
-                  alt="Pantalla de acceso del Portal NOC de MultiCarrier"
-                  width={1600}
-                  height={878}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+            <article className="group">
+              <Cover project={caseStudy} aspect="aspect-[16/10]" width={1536} height={1024} />
               <div className="mt-4 grid gap-6 lg:grid-cols-2">
                 <Caption project={caseStudy} />
                 <ul className="space-y-2 text-[15px] leading-relaxed lg:mt-4">
