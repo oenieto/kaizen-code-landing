@@ -1,38 +1,27 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useInView, useAnimation, Variants } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface Props {
   children: React.ReactNode;
-  width?: "fit-content" | "100%";
+  /** Kept for backwards compatibility with existing pages; layout is always block. */
+  width?: 'fit-content' | '100%';
   delay?: number;
+  className?: string;
 }
 
-export const Reveal: React.FC<Props> = ({ children, width = "100%", delay = 0.25 }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-75px" });
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls]);
-
-  const variants: Variants = {
-    hidden: { opacity: 0, y: 75 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  return (
-    <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
+/**
+ * Subtle fade-in on first scroll into view. Short distance and duration on purpose:
+ * motion should confirm structure, not perform. Disabled under prefers-reduced-motion
+ * via the root <MotionConfig reducedMotion="user">.
+ */
+export const Reveal: React.FC<Props> = ({ children, delay = 0, className }) => (
+  <motion.div
+    className={className}
+    initial={{ opacity: 0, y: 12 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: '-60px' }}
+    transition={{ duration: 0.45, delay: Math.min(delay, 0.3), ease: [0.22, 1, 0.36, 1] }}
+  >
+    {children}
+  </motion.div>
+);

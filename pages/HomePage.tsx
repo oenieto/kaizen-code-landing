@@ -2,36 +2,39 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Hero } from '../components/Hero';
 import { Services } from '../components/Services';
-import { Methodology } from '../components/Methodology';
-import { TechStack } from '../components/TechStack';
 import { Projects } from '../components/Projects';
-import { Stats } from '../components/Stats';
+import { Engineering } from '../components/Engineering';
+import { Process } from '../components/Process';
+import { Engagements } from '../components/Engagements';
+import { Faq } from '../components/Faq';
 import { Contact } from '../components/Contact';
 
 export const HomePage: React.FC = () => {
-  const location = useLocation();
+  const { hash } = useLocation();
+
+  // Arriving from another route with a hash (e.g. /#work): scroll once the section exists.
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const id = requestAnimationFrame(() => document.querySelector(hash)?.scrollIntoView());
+    return () => cancelAnimationFrame(id);
+  }, [hash]);
 
   useEffect(() => {
-    if (location.hash) {
-      setTimeout(() => {
-        const element = document.querySelector(location.hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location]);
+    document.title = 'Kaizen Code — Ingeniería de software para productos que deben funcionar';
+  }, []);
 
   return (
     <>
       <Hero />
-      <Stats />
       <Services />
-      <Methodology />
-      <TechStack />
       <Projects />
+      <Engineering />
+      <Process />
+      <Engagements />
+      <Faq />
       <Contact />
     </>
   );

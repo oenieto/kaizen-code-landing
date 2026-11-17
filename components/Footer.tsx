@@ -1,64 +1,68 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Code2, Github, Linkedin } from 'lucide-react';
+import { CONTACT } from '../data/site';
 
-export const Footer: React.FC = () => {
-  return (
-    <footer className="bg-surface-light dark:bg-surface-dark border-t border-accent-light dark:border-accent-dark pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
-          <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <Code2 className="text-text-dark dark:text-white w-6 h-6" />
-              <span className="font-display font-bold text-lg tracking-tight text-text-dark dark:text-white uppercase">
-                Kaizen Code
-              </span>
-            </div>
-            <p className="text-sm text-text-dark-muted dark:text-gray-400">
-              Software impulsado por IA. Hecho en México con filosofía Kaizen.
-            </p>
-          </div>
+const columns = [
+  {
+    title: 'Servicios',
+    links: [
+      { label: 'Plataformas web', href: '/#services' },
+      { label: 'IA aplicada', href: '/#services' },
+      { label: 'Auditoría técnica', href: '/#engagement' },
+    ],
+  },
+  {
+    title: 'Empresa',
+    links: [
+      { label: 'Nosotros', href: '/about' },
+      { label: 'Trabajo', href: '/#work' },
+      { label: 'Blog', href: '/blog' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacidad', href: '/privacy' },
+      { label: 'Términos', href: '/terms' },
+    ],
+  },
+];
 
-          <div>
-            <h4 className="font-bold text-text-dark dark:text-white mb-4 text-sm uppercase tracking-wider">Empresa</h4>
-            <ul className="space-y-2 text-sm text-text-dark-muted dark:text-gray-400">
-              <li><Link to="/about" className="hover:text-primary transition-colors">Sobre Nosotros</Link></li>
-              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-text-dark dark:text-white mb-4 text-sm uppercase tracking-wider">Legal</h4>
-            <ul className="space-y-2 text-sm text-text-dark-muted dark:text-gray-400">
-              <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacidad</Link></li>
-              <li><Link to="/terms" className="hover:text-primary transition-colors">Términos</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-text-dark dark:text-white mb-4 text-sm uppercase tracking-wider">Social</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-text-dark-muted dark:text-gray-500 hover:text-primary transition-colors">
-                <span className="sr-only">GitHub</span>
-                <Github size={24} />
-              </a>
-              <a href="#" className="text-text-dark-muted dark:text-gray-500 hover:text-primary transition-colors">
-                <span className="sr-only">LinkedIn</span>
-                <Linkedin size={24} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-accent-light dark:border-accent-dark pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-text-dark-muted dark:text-gray-500">
-          <p>© 2025 Kaizen Code. Todos los derechos reservados.</p>
-          <div className="flex items-center gap-2 mt-2 md:mt-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>All Systems Operational</span>
-          </div>
-        </div>
+export const Footer: React.FC = () => (
+  <footer className="border-t border-line">
+    <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div>
+        <Link to="/" className="flex items-center gap-2.5">
+          <img src="/assets/kaizenlogo-removebg-preview.png" alt="" width={24} height={24} className="h-6 w-6 object-contain invert dark:invert-0" />
+          <span className="text-[15px] font-semibold tracking-tight">Kaizen Code</span>
+        </Link>
+        <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+          Ingeniería de software para productos que deben funcionar. Hecho en México.
+        </p>
+        <a href={`mailto:${CONTACT.email}`} className="mt-4 inline-block font-mono text-xs text-muted hover:text-fg">
+          {CONTACT.email}
+        </a>
       </div>
-    </footer>
-  );
-};
+
+      {columns.map((col) => (
+        <nav key={col.title} aria-label={col.title}>
+          <h2 className="eyebrow">{col.title}</h2>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {col.links.map((l) => (
+              <li key={l.label}>
+                <Link to={l.href} className="text-muted transition-colors hover:text-fg">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+    </div>
+
+    <div className="container-page flex flex-col gap-2 border-t border-line py-6 text-xs text-faint sm:flex-row sm:justify-between">
+      <p>© {new Date().getFullYear()} Kaizen Code. Todos los derechos reservados.</p>
+      <p className="font-mono">改善 — mejora continua</p>
+    </div>
+  </footer>
+);

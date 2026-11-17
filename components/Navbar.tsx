@@ -1,152 +1,157 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { motion } from 'framer-motion';
+
+const navLinks = [
+  { name: 'Servicios', href: '#services' },
+  { name: 'Trabajo', href: '#work' },
+  { name: 'Ingeniería', href: '#engineering' },
+  { name: 'Proceso', href: '#process' },
+  { name: 'Blog', href: '/blog' },
+];
+
+function useTheme() {
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  const toggle = () => {
+    const next = !isDark;
+    document.documentElement.classList.toggle('dark', next);
+    try {
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+    } catch {
+      /* storage unavailable (private mode): theme still applies for this visit */
+    }
+    setIsDark(next);
+  };
+
+  return { isDark, toggle };
+}
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const { isDark, toggle } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setIsOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isOpen]);
+
+  useEffect(() => setIsOpen(false), [location.pathname]);
+
+  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#')) return;
     e.preventDefault();
     setIsOpen(false);
     if (location.pathname !== '/') {
       navigate('/' + href);
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      return;
     }
+    document.querySelector(href)?.scrollIntoView();
+    history.replaceState(null, '', href);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
-
-  const navLinks = [
-    { name: 'Servicios', href: '#services' },
-    { name: 'Metodología', href: '#methodology' },
-    { name: 'Proyectos', href: '#projects' },
-  ];
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-surface-light/90 dark:bg-bg-dark/90 backdrop-blur-md border-b border-accent-light dark:border-accent-dark py-4'
-          : 'bg-transparent py-6'
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 ${
+        scrolled || isOpen ? 'border-b border-line bg-canvas/85 backdrop-blur-md' : 'border-b border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2 group cursor-pointer">
-            <div className="relative w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
-               <img 
-                 src="/assets/kaizenlogo-removebg-preview.png" 
-                 alt="Kaizen Code Logo" 
-                 className="w-full h-full object-contain dark:invert-0 invert"
-               />
-            </div>
-            <span className="font-display font-bold text-xl tracking-tight text-text-dark dark:text-white uppercase">
-              Kaizen Code
-            </span>
-          </Link>
+      <nav className="container-page flex h-16 items-center justify-between" aria-label="Principal">
+        <Link to="/" className="flex items-center gap-2.5" aria-label="Kaizen Code, inicio">
+          <img
+            src="/assets/kaizenlogo-removebg-preview.png"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7 object-contain invert dark:invert-0"
+          />
+          <span className="text-[15px] font-semibold tracking-tight">Kaizen Code</span>
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={toggleTheme}
-              className="text-text-muted hover:text-primary transition-colors p-2"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            {navLinks.map((link) => (
+        <div className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) =>
+            link.href.startsWith('#') ? (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-medium text-text-dark-muted dark:text-text-muted hover:text-primary transition-colors cursor-pointer"
+                onClick={(e) => handleNav(e, link.href)}
+                className="rounded-md px-3 py-2 text-sm text-muted transition-colors hover:text-fg"
               >
                 {link.name}
               </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="px-6 py-2.5 bg-primary hover:bg-primary-dark text-white rounded text-sm font-medium transition-colors duration-200 cursor-pointer"
-            >
-              Contacto
-            </a>
-          </div>
-
-          {/* Mobile Toggle */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-primary transition-colors"
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+            ) : (
+              <Link key={link.name} to={link.href} className="rounded-md px-3 py-2 text-sm text-muted transition-colors hover:text-fg">
+                {link.name}
+              </Link>
+            ),
+          )}
         </div>
-      </div>
 
-      {/* Mobile Menu */}
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={toggle}
+            className="grid h-10 w-10 place-items-center rounded-md text-muted transition-colors hover:bg-subtle hover:text-fg"
+            aria-label={isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
+          >
+            {isDark ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <a
+            href="#contact"
+            onClick={(e) => handleNav(e, '#contact')}
+            className="ml-2 hidden min-h-9 items-center rounded-md bg-fg px-4 text-sm font-medium text-canvas transition-opacity hover:opacity-90 sm:inline-flex"
+          >
+            Agendar llamada
+          </a>
+          <button
+            type="button"
+            onClick={() => setIsOpen((v) => !v)}
+            className="grid h-10 w-10 place-items-center rounded-md text-fg md:hidden"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </nav>
+
       {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          className="md:hidden bg-surface-light dark:bg-surface-dark border-b border-accent-light dark:border-accent-dark"
-        >
-          <div className="px-6 pt-4 pb-8 space-y-4">
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-2 text-base font-medium text-text-dark dark:text-text-light hover:text-primary w-full"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-              <span>{isDark ? 'Modo Claro' : 'Modo Oscuro'}</span>
-            </button>
+        <div id="mobile-menu" className="border-t border-line md:hidden">
+          <ul className="container-page flex flex-col py-3">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="block text-base font-medium text-text-dark dark:text-text-light hover:text-primary cursor-pointer"
-              >
-                {link.name}
-              </a>
+              <li key={link.name}>
+                {link.href.startsWith('#') ? (
+                  <a href={link.href} onClick={(e) => handleNav(e, link.href)} className="block py-3 text-base text-fg">
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link to={link.href} className="block py-3 text-base text-fg">
+                    {link.name}
+                  </Link>
+                )}
+              </li>
             ))}
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="block w-full text-center px-6 py-3 bg-primary text-white rounded font-medium mt-4 cursor-pointer"
-            >
-              Contacto
-            </a>
-          </div>
-        </motion.div>
+            <li className="pt-2 pb-2">
+              <a href="#contact" onClick={(e) => handleNav(e, '#contact')} className="btn-primary w-full">
+                Agendar llamada
+              </a>
+            </li>
+          </ul>
+        </div>
       )}
-    </nav>
+    </header>
   );
 };
