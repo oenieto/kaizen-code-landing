@@ -1,61 +1,63 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { SystemDiagram } from './SystemDiagram';
 
-const guarantees = [
-  'Código en tu repositorio desde el día uno',
-  'Software funcionando cada 2 semanas',
-  'Arquitectura documentada en ADRs',
-  'Garantía y soporte post-lanzamiento',
+const commitments = [
+  { k: 'Propiedad', v: 'Código en tu repositorio desde el día uno' },
+  { k: 'Cadencia', v: 'Software funcionando cada dos semanas' },
+  { k: 'Decisiones', v: 'Arquitectura documentada en ADRs' },
+  { k: 'Continuidad', v: 'Garantía y soporte post-lanzamiento' },
 ];
 
-// No entrance animation here: above-the-fold content should paint immediately (LCP).
+/**
+ * Full-width typographic hero: the headline is the page's face. No entrance
+ * animation so above-the-fold content paints immediately (LCP).
+ */
 export const Hero: React.FC = () => (
-  <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 lg:pb-28" aria-labelledby="hero-title">
-    <div className="bg-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
+  <section className="pt-32 sm:pt-40" aria-labelledby="hero-title">
+    <div className="container-page">
+      <p className="eyebrow">Estudio de ingeniería de software · México</p>
 
-    <div className="container-page relative grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
-      <div>
-        <div>
-          <p className="eyebrow">Estudio de ingeniería de software · México</p>
-          <h1
-            id="hero-title"
-            className="mt-5 text-[2.5rem] leading-[1.05] font-semibold tracking-[-0.035em] text-balance sm:text-6xl"
-          >
-            Software de producción, no prototipos.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted">
-            Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA para empresas cuyo
-            sistema no puede fallar. Código tipado, probado, observable y tuyo desde el primer commit.
-          </p>
-        </div>
+      <h1
+        id="hero-title"
+        className="mt-6 text-[clamp(2.75rem,9.2vw,8.75rem)] leading-[0.95] font-semibold tracking-[-0.045em]"
+      >
+        Software de producción,
+        <br />
+        <span className="text-faint">no prototipos.</span>
+      </h1>
 
-        <div>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href="#contact" className="btn-primary group">
-              Agendar llamada técnica
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-            </a>
-            <a href="#work" className="btn-secondary">
-              Ver trabajo
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <ul className="mt-12 grid gap-x-8 gap-y-3 border-t border-line pt-6 text-sm text-muted sm:grid-cols-2">
-            {guarantees.map((g) => (
-              <li key={g} className="flex items-start gap-2.5">
-                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-[1px] bg-accent" aria-hidden="true" />
-                {g}
-              </li>
-            ))}
-          </ul>
+      <div className="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-[minmax(0,36rem)_1fr] lg:items-end">
+        <p className="text-lg leading-relaxed text-pretty text-muted sm:text-xl">
+          Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA para empresas cuyo sistema no
+          puede fallar. Tipado, probado, observable y tuyo desde el primer commit.
+        </p>
+        <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+          <a href="#contact" className="btn-primary group">
+            Agendar llamada técnica
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
+          <a href="#work" className="btn-secondary">
+            Ver trabajo
+          </a>
         </div>
       </div>
+    </div>
 
-      <div>
-        <SystemDiagram />
+    <div className="mt-20 border-y border-line sm:mt-24">
+      <div className="container-page">
+        <dl className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+        {commitments.map((c, i) => (
+          <div
+            key={c.k}
+            className="bg-canvas py-6 sm:pr-6 sm:even:pl-6 lg:py-8 lg:pl-6 lg:first:pl-0"
+          >
+            <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+              <span className="text-accent">0{i + 1}</span> {c.k}
+            </dt>
+            <dd className="mt-2 text-[15px] leading-snug text-fg">{c.v}</dd>
+          </div>
+        ))}
+        </dl>
       </div>
     </div>
   </section>

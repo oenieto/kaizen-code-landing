@@ -8,8 +8,7 @@
       name="description"
       content="Estudio de ingeniería de software en México. Diseñamos, construimos y operamos plataformas web, APIs e integraciones con IA con estándares de producción: tipado de punta a punta, CI/CD, observabilidad y seguridad desde el día uno."
     />
-    <meta name="theme-color" content="#0b0c0d" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
     <meta property="og:site_name" content="Kaizen Code" />
@@ -28,16 +27,12 @@
       rel="stylesheet"
     />
 
-    <!-- Apply the stored/system theme before first paint to avoid a flash. -->
+    <!-- Light is the default; dark only when the visitor chose it. Runs before first paint. -->
     <script>
       (function () {
         try {
-          var stored = localStorage.getItem('theme');
-          var dark = stored ? stored === 'dark' : !window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.classList.toggle('dark', dark);
-        } catch (e) {
-          document.documentElement.classList.add('dark');
-        }
+          if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {}
       })();
     </script>
 

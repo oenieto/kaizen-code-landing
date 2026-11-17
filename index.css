@@ -6,17 +6,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens.
- * Semantic tokens (canvas, surface, line, fg, muted, accent) switch with the theme
- * and are what new components use. The legacy pairs (bg-light/bg-dark, …) are kept
- * so secondary pages that use `x-light dark:x-dark` keep rendering on the new palette.
+ * Design tokens. Semantic names (canvas, surface, line, fg, muted, accent) switch
+ * with the `.dark` class; components use only these.
  */
 :root {
-  --canvas: #fafaf9;
+  --canvas: #ffffff;
   --surface: #ffffff;
-  --subtle: #f2f2f0;
-  --line: #e4e4e1;
-  --line-strong: #cfcfcb;
+  --subtle: #f5f5f4;
+  --line: #e7e7e4;
+  --line-strong: #d4d4d0;
   --fg: #111213;
   --muted: #5d5f63;
   --faint: #8a8c90;
@@ -43,7 +41,6 @@
 
 @theme inline {
   --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-canvas: var(--canvas);
@@ -58,20 +55,6 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
   --color-warn: var(--warn);
-
-  /* Legacy names used by About / Blog / Legal pages */
-  --color-primary: var(--accent);
-  --color-primary-dark: var(--accent);
-  --color-bg-light: #fafaf9;
-  --color-bg-dark: #0b0c0d;
-  --color-surface-light: #ffffff;
-  --color-surface-dark: #111214;
-  --color-accent-light: #e4e4e1;
-  --color-accent-dark: #222428;
-  --color-text-light: #ececec;
-  --color-text-muted: #9a9ca2;
-  --color-text-dark: #111213;
-  --color-text-dark-muted: #5d5f63;
 }
 
 @layer base {
@@ -127,27 +110,4 @@
 
 @utility field {
   @apply block w-full rounded-md border border-line-strong bg-surface px-3.5 py-2.5 text-sm text-fg placeholder:text-faint transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25 aria-invalid:border-red-500 aria-invalid:focus:ring-red-500/25;
-}
-
-/* Faint engineering grid used behind the hero */
-@utility bg-grid {
-  background-image:
-    linear-gradient(to right, var(--line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
-}
-
-/* Request travelling along a diagram edge. Purely decorative. */
-@keyframes diagram-pulse {
-  0% { transform: translate(-50%, 0); opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { transform: translate(-50%, 28px); opacity: 0; }
-}
-@utility diagram-pulse {
-  animation: diagram-pulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .diagram-pulse { animation: none; opacity: 0; }
 }

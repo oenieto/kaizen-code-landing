@@ -1,156 +1,104 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, ArrowRight } from 'lucide-react';
-import { Reveal } from '../components/Reveal';
-import postsData from '../data/blog-posts.json';
-
-interface Post {
-  id: number;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  category: string;
-  date: string;
-  readTime: string;
-  featured: boolean;
-  source?: string;
-}
-
-const posts: Post[] = postsData as Post[];
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { posts } from '../data/blog';
 
 export const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = posts.find(p => p.slug === slug);
+  const index = posts.findIndex((p) => p.slug === slug);
+  const post = index >= 0 ? posts[index] : undefined;
+
+  useEffect(() => {
+    document.title = post ? `${post.title} — Kaizen Code` : 'Artículo no encontrado — Kaizen Code';
+  }, [post]);
 
   if (!post) {
     return (
-      <div className="pt-24 min-h-screen flex items-center justify-center bg-bg-light dark:bg-bg-dark">
-        <div className="text-center">
-          <h1 className="font-display text-4xl font-bold text-text-dark dark:text-white mb-4">
-            Artículo no encontrado
-          </h1>
-          <p className="text-text-dark-muted dark:text-text-muted mb-8">
-            El artículo que buscas no existe o fue removido.
-          </p>
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded font-medium hover:bg-primary-dark transition-colors"
-          >
-            <ArrowLeft size={16} /> Volver al Blog
-          </Link>
-        </div>
-      </div>
+      <section className="container-page flex min-h-[70vh] flex-col items-start justify-center pt-24">
+        <p className="eyebrow">Blog</p>
+        <h1 className="mt-3 text-4xl font-semibold tracking-tight">Artículo no encontrado.</h1>
+        <p className="mt-3 max-w-md text-muted">El artículo que buscas no existe o fue retirado.</p>
+        <Link to="/blog" className="btn-primary mt-8">
+          <ArrowLeft size={16} aria-hidden="true" />
+          Volver al blog
+        </Link>
+      </section>
     );
   }
 
-  const currentIndex = posts.findIndex(p => p.slug === slug);
-  const nextPost = posts[currentIndex + 1] || null;
-  const prevPost = posts[currentIndex - 1] || null;
+  const prev = posts[index - 1];
+  const next = posts[index + 1];
 
   return (
-    <div className="pt-24">
-      {/* Header */}
-      <section className="py-16 bg-bg-light dark:bg-bg-dark border-b border-accent-light dark:border-accent-dark">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-text-dark-muted dark:text-text-muted hover:text-primary transition-colors mb-8"
-            >
-              <ArrowLeft size={14} /> Volver al Blog
-            </Link>
+    <article>
+      <header className="pt-32 pb-12 sm:pt-40 sm:pb-16">
+        <div className="container-page max-w-3xl">
+          <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg">
+            <ArrowLeft size={14} aria-hidden="true" />
+            Blog
+          </Link>
+          <p className="mt-10 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] text-faint">
+            <span className="uppercase tracking-[0.12em] text-accent">{post.category}</span>
+            <time>{post.date}</time>
+            <span>{post.readTime} de lectura</span>
+          </p>
+          <h1 className="mt-4 text-3xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-5xl">
+            {post.title}
+          </h1>
+          <p className="mt-6 text-lg leading-relaxed text-pretty text-muted">{post.excerpt}</p>
+        </div>
+      </header>
 
-            <div className="flex flex-wrap items-center gap-3 mb-5">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary">
-                {post.category}
-              </span>
-              <span className="flex items-center gap-1 text-xs text-text-dark-muted dark:text-text-muted">
-                <Clock size={12} /> {post.readTime}
-              </span>
-              <span className="text-xs text-text-dark-muted dark:text-text-muted">
-                {post.date}
-              </span>
-            </div>
+      <div className="border-t border-line">
+        <div className="container-page max-w-3xl space-y-6 py-14 text-[17px] leading-[1.8] text-fg/90">
+          {post.content.split('\n\n').map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+          ))}
 
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-text-dark dark:text-white leading-tight mb-6">
-              {post.title}
-            </h1>
-
-            <p className="text-lg text-text-dark-muted dark:text-text-muted leading-relaxed">
-              {post.excerpt}
+          {/* `source` is free text from the weekly script (a publication name), sometimes a URL. */}
+          {post.source && (
+            <p className="border-t border-line pt-6 text-sm text-muted">
+              Fuente:{' '}
+              {/^https?:\/\//.test(post.source) ? (
+                <a href={post.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-fg">
+                  {post.source}
+                </a>
+              ) : (
+                post.source
+              )}
             </p>
-          </Reveal>
+          )}
         </div>
-      </section>
+      </div>
 
-      {/* Article body */}
-      <section className="py-16 bg-bg-light dark:bg-bg-dark">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <article className="space-y-6">
-              {post.content.split('\n\n').map((paragraph, idx) => (
-                <p
-                  key={idx}
-                  className="text-text-dark dark:text-text-light/90 leading-[1.85] text-base"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </article>
-          </Reveal>
-
-          {/* Author */}
-          <Reveal delay={0.1}>
-            <div className="mt-14 pt-8 border-t border-accent-light dark:border-accent-dark flex items-center gap-4">
-              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center flex-shrink-0">
-                <span className="font-display font-bold text-sm text-primary">KC</span>
-              </div>
-              <div>
-                <p className="text-sm font-bold text-text-dark dark:text-white">Kaizen Code</p>
-                <p className="text-xs text-text-dark-muted dark:text-text-muted">
-                  Software impulsado por IA · Hecho en México
-                </p>
-              </div>
-            </div>
-          </Reveal>
+      <nav aria-label="Más artículos" className="border-t border-line">
+        <div className="container-page grid max-w-3xl gap-px bg-line sm:grid-cols-2">
+          {prev ? (
+            <Link to={`/blog/${prev.slug}`} className="group bg-canvas py-8 sm:pr-6">
+              <span className="flex items-center gap-1 font-mono text-[11px] text-faint">
+                <ArrowLeft size={12} aria-hidden="true" /> Anterior
+              </span>
+              <span className="mt-2 line-clamp-2 block font-medium group-hover:underline group-hover:underline-offset-4">
+                {prev.title}
+              </span>
+            </Link>
+          ) : (
+            <div className="bg-canvas" />
+          )}
+          {next ? (
+            <Link to={`/blog/${next.slug}`} className="group bg-canvas py-8 sm:pl-6 sm:text-right">
+              <span className="flex items-center gap-1 font-mono text-[11px] text-faint sm:justify-end">
+                Siguiente <ArrowRight size={12} aria-hidden="true" />
+              </span>
+              <span className="mt-2 line-clamp-2 block font-medium group-hover:underline group-hover:underline-offset-4">
+                {next.title}
+              </span>
+            </Link>
+          ) : (
+            <div className="bg-canvas" />
+          )}
         </div>
-      </section>
-
-      {/* Navigation */}
-      <section className="py-10 bg-surface-light dark:bg-surface-dark border-t border-accent-light dark:border-accent-dark">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-start gap-8">
-            {prevPost ? (
-              <Link
-                to={`/blog/${prevPost.slug}`}
-                className="group flex-1 text-left"
-              >
-                <span className="text-xs text-text-dark-muted dark:text-text-muted flex items-center gap-1 mb-2">
-                  <ArrowLeft size={12} /> Anterior
-                </span>
-                <span className="text-sm font-medium text-text-dark dark:text-white group-hover:text-primary transition-colors line-clamp-2">
-                  {prevPost.title}
-                </span>
-              </Link>
-            ) : <div className="flex-1" />}
-
-            {nextPost ? (
-              <Link
-                to={`/blog/${nextPost.slug}`}
-                className="group flex-1 text-right"
-              >
-                <span className="text-xs text-text-dark-muted dark:text-text-muted flex items-center justify-end gap-1 mb-2">
-                  Siguiente <ArrowRight size={12} />
-                </span>
-                <span className="text-sm font-medium text-text-dark dark:text-white group-hover:text-primary transition-colors line-clamp-2">
-                  {nextPost.title}
-                </span>
-              </Link>
-            ) : <div className="flex-1" />}
-          </div>
-        </div>
-      </section>
-    </div>
+      </nav>
+    </article>
   );
 };

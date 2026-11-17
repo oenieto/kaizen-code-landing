@@ -2,6 +2,7 @@ import React from 'react';
 import { standards } from '../data/site';
 import { Section } from './Section';
 import { Reveal } from './Reveal';
+import { SystemDiagram } from './SystemDiagram';
 
 /** Trimmed version of the pipeline every project starts with. */
 const PIPELINE = `# .github/workflows/ci.yml
@@ -52,6 +53,10 @@ export const Engineering: React.FC = () => (
     title="Los estándares no son opcionales."
     intro="Esto es lo que recibe cualquier proyecto, sin importar su tamaño. Es la diferencia entre un sistema que se puede mantener y uno que hay que reescribir en un año."
   >
+    <Reveal className="mb-10 sm:mb-14">
+      <SystemDiagram />
+    </Reveal>
+
     <div className="grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14">
       <ol className="grid min-w-0 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
         {standards.map((s, i) => (

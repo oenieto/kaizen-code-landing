@@ -1,7 +1,7 @@
 import React from 'react';
-import { Reveal } from '../components/Reveal';
+import { LegalPage, type LegalSection } from '../components/LegalPage';
 
-const sections = [
+const sections: LegalSection[] = [
   {
     id: 'aceptacion',
     title: '1. Aceptación de los Términos',
@@ -108,80 +108,11 @@ México`,
   },
 ];
 
-export const TermsPage: React.FC = () => {
-  return (
-    <div className="pt-24">
-      {/* Header */}
-      <section className="py-16 bg-bg-light dark:bg-bg-dark border-b border-accent-light dark:border-accent-dark">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <Reveal>
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-text-dark dark:text-white">
-              Términos y Condiciones
-            </h1>
-            <p className="text-text-dark-muted dark:text-text-muted">
-              Condiciones de prestación de servicios · Última actualización: Marzo 2025
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Tabla de contenidos */}
-      <section className="py-8 bg-surface-light dark:bg-surface-dark border-b border-accent-light dark:border-accent-dark">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-bold uppercase tracking-widest text-primary mb-4">Contenido</p>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-1.5">
-              {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="text-sm text-text-dark-muted dark:text-text-muted hover:text-primary transition-colors"
-                >
-                  {s.title}
-                </a>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Contenido */}
-      <section className="py-16 bg-bg-light dark:bg-bg-dark">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 space-y-14">
-          {sections.map((section, idx) => (
-            <Reveal key={section.id} delay={idx * 0.03}>
-              <div id={section.id} className="scroll-mt-28">
-                <h2 className="font-display text-xl font-bold mb-4 text-text-dark dark:text-white border-b border-accent-light dark:border-accent-dark pb-3">
-                  {section.title}
-                </h2>
-                <div className="text-text-dark-muted dark:text-text-muted leading-relaxed text-sm whitespace-pre-line">
-                  {section.content}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-14 bg-surface-light dark:bg-surface-dark border-t border-accent-light dark:border-accent-dark">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <Reveal>
-            <h2 className="font-display text-2xl font-bold mb-3 text-text-dark dark:text-white">
-              ¿Dudas sobre nuestros términos?
-            </h2>
-            <p className="text-text-dark-muted dark:text-text-muted mb-6 text-sm">
-              Te aclaramos cualquier punto antes de iniciar tu proyecto.
-            </p>
-            <a
-              href="/#contact"
-              className="inline-block px-6 py-3 bg-primary text-white rounded font-medium hover:bg-primary-dark transition-colors text-sm"
-            >
-              Contactar
-            </a>
-          </Reveal>
-        </div>
-      </section>
-    </div>
-  );
-};
+export const TermsPage: React.FC = () => (
+  <LegalPage
+    title="Términos y condiciones"
+    subtitle="Condiciones de prestación de servicios · Última actualización: marzo 2025"
+    sections={sections}
+    ctaTitle="¿Dudas sobre nuestros términos?"
+  />
+);

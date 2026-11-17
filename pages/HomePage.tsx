@@ -12,14 +12,10 @@ import { Contact } from '../components/Contact';
 export const HomePage: React.FC = () => {
   const { hash } = useLocation();
 
-  // Arriving from another route with a hash (e.g. /#work): scroll once the section exists.
+  // Arriving with a hash (e.g. /#work from another route). Sections are rendered
+  // eagerly, so the target already exists when this effect runs.
   useEffect(() => {
-    if (!hash) {
-      window.scrollTo(0, 0);
-      return;
-    }
-    const id = requestAnimationFrame(() => document.querySelector(hash)?.scrollIntoView());
-    return () => cancelAnimationFrame(id);
+    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
   }, [hash]);
 
   useEffect(() => {
