@@ -1,5 +1,6 @@
 import React from 'react';
 import { LegalPage, type LegalSection } from '../components/LegalPage';
+import { CONTACT } from '../data/site';
 
 const sections: LegalSection[] = [
   {
@@ -103,7 +104,7 @@ Para cualquier controversia derivada de la interpretación o ejecución de estos
     content: `Para asuntos legales relacionados con estos Términos y Condiciones:
 
 Kaizen Code
-Correo electrónico: nieto_war@hotmail.com
+Correo electrónico: ${CONTACT.email}
 México`,
   },
 ];

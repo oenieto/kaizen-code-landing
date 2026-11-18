@@ -7,7 +7,7 @@
 export const SELECT_PROJECT_TYPE = 'kc:select-project-type';
 
 export const CONTACT = {
-  email: 'nieto_war@hotmail.com',
+  email: 'contacto@kaizencode.com.mx',
   whatsapp: '525931031187',
 } as const;
 

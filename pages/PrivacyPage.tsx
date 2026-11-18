@@ -1,5 +1,6 @@
 import React from 'react';
 import { LegalPage, type LegalSection } from '../components/LegalPage';
+import { CONTACT } from '../data/site';
 
 const sections: LegalSection[] = [
   {
@@ -7,7 +8,7 @@ const sections: LegalSection[] = [
     title: '1. Responsable del Tratamiento de sus Datos Personales',
     content: `Kaizen Code (en adelante "Kaizen Code", "nosotros" o "la empresa"), con domicilio en México, es responsable del tratamiento de sus datos personales conforme a lo dispuesto en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento.
 
-Para cualquier asunto relacionado con sus datos personales puede contactarnos en: nieto_war@hotmail.com`,
+Para cualquier asunto relacionado con sus datos personales puede contactarnos en: ${CONTACT.email}`,
   },
   {
     id: 'datos',
@@ -61,7 +62,7 @@ Puede deshabilitar las cookies modificando la configuración de su navegador. Co
     title: '6. Derechos ARCO y Cómo Ejercerlos',
     content: `Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse (derechos ARCO) al tratamiento de sus datos personales. También tiene derecho a revocar el consentimiento que nos haya otorgado para finalidades secundarias.
 
-Para ejercer sus derechos ARCO, envíe un correo electrónico a nieto_war@hotmail.com con el asunto "Derechos ARCO" indicando:
+Para ejercer sus derechos ARCO, envíe un correo electrónico a ${CONTACT.email} con el asunto "Derechos ARCO" indicando:
 
 • Nombre completo y correo electrónico con el que se registró o contactó.
 • El derecho que desea ejercer y los datos a los que refiere.
@@ -93,7 +94,7 @@ Le recomendamos consultar periódicamente este aviso. El uso continuado de nuest
     content: `Si tiene preguntas, dudas o comentarios sobre este Aviso de Privacidad o sobre el tratamiento de sus datos personales, puede contactarnos en:
 
 Kaizen Code
-Correo electrónico: nieto_war@hotmail.com
+Correo electrónico: ${CONTACT.email}
 México
 
 También puede presentar una queja o denuncia ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI) en www.inai.org.mx si considera que su derecho a la protección de datos personales ha sido vulnerado.`,
