@@ -56,6 +56,37 @@ const covers: Record<string, { className: string; detail: React.ReactNode }> = {
       </div>
     ),
   },
+  edgebet: {
+    className: 'bg-[#1e1b4b] text-white',
+    detail: (
+      <ul className="w-full max-w-[15rem] space-y-2 text-[13px]" aria-hidden="true">
+        {[
+          ['Modelo ML', 'w-[70%]'],
+          ['Polymarket', 'w-[58%]'],
+          ['Casa de apuestas', 'w-[46%]'],
+        ].map(([label, width]) => (
+          <li key={label}>
+            <span className="text-white/75">{label}</span>
+            <span className="mt-1 block h-1.5 w-full bg-white/15">
+              <span className={`block h-full bg-[#34d399] ${width}`} />
+            </span>
+          </li>
+        ))}
+      </ul>
+    ),
+  },
+  bethel: {
+    className: 'bg-[#e9e1cf] text-fg',
+    detail: (
+      <ul className="w-full max-w-[14rem] space-y-1.5 text-[13px]" aria-hidden="true">
+        {['Tesorería', 'Secretaría', 'Hospitalario'].map((m) => (
+          <li key={m} className="border-b border-fg/20 pb-1.5">
+            {m}
+          </li>
+        ))}
+      </ul>
+    ),
+  },
   atlas: {
     className: 'bg-accent text-black',
     detail: (

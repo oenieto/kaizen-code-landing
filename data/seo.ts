@@ -29,7 +29,7 @@ const staticRoutes: RouteMeta[] = [
     path: '/trabajo',
     title: 'Proyectos de software a la medida en México — Kaizen Code',
     description:
-      'Proyectos de Kaizen Code: portales para telecomunicaciones, facturación CFDI, asistentes con IA, agentes de WhatsApp y más.',
+      'Proyectos de Kaizen Code: portal NOC para telecomunicaciones, facturación CFDI, analítica deportiva con IA, gestión para logias y agentes de WhatsApp.',
   },
   {
     path: '/como-trabajamos',

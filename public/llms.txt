@@ -16,7 +16,7 @@ Fundado por Oscar Emiliano Nieto Guerra, Juan Antonio Sánchez Jiménez, Maurici
 ## Páginas
 
 - [Inicio](https://kaizencode.com.mx/): soluciones, proyectos destacados y contacto.
-- [Proyectos](https://kaizencode.com.mx/trabajo): proyectos con clientes (portales para telecomunicaciones, facturación CFDI) y productos propios.
+- [Proyectos](https://kaizencode.com.mx/trabajo): proyectos con clientes y productos propios: portal NOC para telecomunicaciones (MultiCarrier), facturación CFDI (Folio), analítica de apuestas deportivas con IA (EdgeBet), gestión para logias masónicas (Bethel) y más.
 - [Cómo trabajamos](https://kaizencode.com.mx/como-trabajamos): proceso de desarrollo, modelos de contratación y estándares de ingeniería.
 - [Nosotros](https://kaizencode.com.mx/about): el equipo fundador.
 - [Blog](https://kaizencode.com.mx/blog): artículos sobre desarrollo de software, infraestructura e IA.

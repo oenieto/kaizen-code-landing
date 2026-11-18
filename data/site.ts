@@ -126,6 +126,42 @@ export const labProjects: Project[] = [
     stack: ['Next.js', 'PostgreSQL', 'Workers', 'CFDI 4.0'],
   },
   {
+    slug: 'edgebet',
+    name: 'EdgeBet',
+    kind: 'Producto propio · Analítica deportiva',
+    status: 'building',
+    statusLabel: 'En desarrollo',
+    summary:
+      'Analítica de apuestas de fútbol que cruza un modelo propio, mercados de predicción y cuotas de casas de apuestas, con IA que explica cada pronóstico.',
+    problem:
+      'Los tipsters venden picks sin fuentes ni explicación. Quien apuesta no sabe por qué un pronóstico tendría valor ni cuánto confiar en él.',
+    highlights: [
+      'Tres capas de probabilidad: modelo de machine learning, Polymarket y cuotas de casas de apuestas.',
+      'Ensamble de modelos validado con series de tiempo para evitar fugas de información.',
+      'Claude explica en lenguaje natural por qué las fuentes coinciden o divergen.',
+      'Ningún indicador se muestra si su fuente no está verificada.',
+    ],
+    stack: ['Next.js', 'FastAPI', 'XGBoost', 'Claude API'],
+  },
+  {
+    slug: 'bethel',
+    name: 'Bethel',
+    kind: 'SaaS · Gestión de logias',
+    status: 'building',
+    statusLabel: 'En desarrollo',
+    summary:
+      'Plataforma multi-tenant para que cada logia masónica lleve tesorería, secretaría, membresía y reportes en un solo lugar.',
+    problem:
+      'Las logias llevan caja, actas y asistencias en hojas de cálculo y libretas. La información se pierde con cada cambio de administración.',
+    highlights: [
+      'Cada logia ve solo sus datos dentro de una base compartida.',
+      'Módulos de tesorería, secretaría, elecciones, hospitalario, inventario y directorio.',
+      'Reportes en PDF, CSV y Excel, con bitácora de auditoría de cada cambio.',
+      'Autenticación por roles, límites de peticiones y API documentada con OpenAPI.',
+    ],
+    stack: ['Node.js', 'Express', 'PostgreSQL', 'OpenAPI'],
+  },
+  {
     slug: 'atlas',
     name: 'Atlas',
     kind: 'R&D · IA aplicada',
