@@ -17,6 +17,7 @@ interface Env {
   TURNSTILE_SECRET?: string;
   /** Secret: Resend API key (sending access only). */
   RESEND_API_KEY?: string;
+  /** Comma-separated recipients of new-lead alerts. */
   CONTACT_TO: string;
   MAIL_FROM: string;
   /** Comma-separated hostnames allowed to post the form. */
@@ -157,7 +158,7 @@ async function notify(env: Env, lead: Lead, createdAt: string): Promise<'sent' |
     headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, 'content-type': 'application/json' },
     body: JSON.stringify({
       from: env.MAIL_FROM,
-      to: [env.CONTACT_TO],
+      to: env.CONTACT_TO.split(',').map((a) => a.trim()).filter(Boolean),
       subject: `Nuevo prospecto: ${lead.name}${lead.interests[0] ? ` · ${lead.interests[0]}` : ''}`,
       text,
       html,

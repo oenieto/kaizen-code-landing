@@ -19,7 +19,7 @@
     }
   ],
   "vars": {
-    "CONTACT_TO": "contacto@kaizencode.com.mx",
+    "CONTACT_TO": "contacto@kaizencode.com.mx,a.ochoa@kaizencode.com.mx,a.sanchez@kaizencode.com.mx,m.mondragon@kaizencode.com.mx",
     "MAIL_FROM": "Kaizen Code <avisos@send.kaizencode.com.mx>",
     "ALLOWED_HOSTS": "kaizencode.com.mx,www.kaizencode.com.mx,kaizen-code-landing.nieto-war.workers.dev,localhost"
   },
