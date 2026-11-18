@@ -6,6 +6,15 @@
 /** Fired by solution CTAs so the contact form can preselect the project type. */
 export const SELECT_PROJECT_TYPE = 'kc:select-project-type';
 
+/**
+ * Cloudflare Turnstile site key (public). Dev uses Cloudflare's always-pass test key;
+ * VITE_TURNSTILE_SITE_KEY overrides it (e.g. to test a production build locally).
+ */
+const PROD_TURNSTILE_SITE_KEY = '0x4AAAAAAGGdLLEKOTe7M1ZM';
+const TEST_TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
+export const TURNSTILE_SITE_KEY: string =
+  import.meta.env.VITE_TURNSTILE_SITE_KEY || (import.meta.env.DEV ? TEST_TURNSTILE_SITE_KEY : PROD_TURNSTILE_SITE_KEY);
+
 export const CONTACT = {
   email: 'contacto@kaizencode.com.mx',
   whatsapp: '525931031187',

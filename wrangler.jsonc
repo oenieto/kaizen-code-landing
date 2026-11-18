@@ -1,8 +1,28 @@
 {
   "name": "kaizen-code-landing",
   "compatibility_date": "2026-11-01",
+  // Only /api/* runs the Worker; every other path is served straight from dist/.
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kaizen-leads",
+      // TODO(setup): replace with the id from `wrangler d1 create kaizen-leads` / the dashboard.
+      "database_id": "9df06514-a43f-442a-a871-fe6f6b8c5831",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "CONTACT_TO": "contacto@kaizencode.com.mx",
+    "MAIL_FROM": "Kaizen Code <avisos@send.kaizencode.com.mx>",
+    "ALLOWED_HOSTS": "kaizencode.com.mx,www.kaizencode.com.mx,kaizen-code-landing.nieto-war.workers.dev,localhost"
+  },
+  // Secrets (set in the dashboard, never in this file): TURNSTILE_SECRET, RESEND_API_KEY.
+  "observability": { "enabled": true }
 }

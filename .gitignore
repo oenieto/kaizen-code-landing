@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Promo video build output
+marketing/promo-video/node_modules
+marketing/promo-video/stills
+marketing/promo-video/promo.mp4
+
+# Local Worker secrets
+.dev.vars
+.wrangler
