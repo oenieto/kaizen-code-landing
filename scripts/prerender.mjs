@@ -9,7 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrEntry = path.join(root, 'dist-ssr', 'entry-server.js');
 
-const { render, routes, notFoundMeta, posts, SITE_URL, SITE_NAME } = await import(ssrEntry);
+const { render, routes, notFoundMeta, posts, solutions, solutionPath, SITE_URL, SITE_NAME } = await import(ssrEntry);
 const template = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 
 const escape = (s) =>
@@ -35,6 +35,42 @@ function articleJsonLd(meta) {
   return `\n    <script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 }
 
+/** Service + FAQPage for /soluciones/* pages. */
+function solutionJsonLd(meta) {
+  const s = solutions.find((x) => solutionPath(x.path) === meta.path);
+  if (!s) return '';
+  const url = urlFor(meta.path);
+  const data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: s.name,
+        serviceType: s.name,
+        description: s.seoDescription,
+        url,
+        provider: { '@id': `${SITE_URL}/#organization` },
+        areaServed: ['MX', 'Latinoamérica', 'US'],
+        audience: { '@type': 'Audience', audienceType: s.audience },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: s.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Soluciones', item: `${SITE_URL}/#solutions` },
+          { '@type': 'ListItem', position: 3, name: s.name, item: url },
+        ],
+      },
+    ],
+  };
+  return `\n    <script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+}
+
 function head(meta, { index = true } = {}) {
   const url = urlFor(meta.path);
   return [
@@ -45,7 +81,7 @@ function head(meta, { index = true } = {}) {
     `<meta property="og:url" content="${url}" />`,
     `<meta property="og:title" content="${escape(meta.title)}" />`,
     `<meta property="og:description" content="${escape(meta.description)}" />`,
-  ].join('\n    ') + articleJsonLd(meta);
+  ].join('\n    ') + articleJsonLd(meta) + solutionJsonLd(meta);
 }
 
 async function write(meta, file, opts) {
@@ -70,7 +106,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${routes
   .map(
     (r) =>
-      `  <url><loc>${urlFor(r.path)}</loc><lastmod>${today}</lastmod><priority>${r.path === '/' ? '1.0' : r.type === 'article' ? '0.6' : '0.8'}</priority></url>`,
+      `  <url><loc>${urlFor(r.path)}</loc><lastmod>${today}</lastmod><priority>${r.path === '/' ? '1.0' : r.type === 'solution' ? '0.9' : r.type === 'article' ? '0.6' : '0.8'}</priority></url>`,
   )
   .join('\n')}
 </urlset>

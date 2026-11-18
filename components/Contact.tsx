@@ -37,6 +37,9 @@ export const Contact: React.FC = () => {
       if (INTERESTS.includes(choice)) setInterests((cur) => (cur.includes(choice) ? cur : [...cur, choice]));
     };
     window.addEventListener(SELECT_PROJECT_TYPE, onSelect);
+    // Solution pages link here with ?interes=<name>.
+    const fromUrl = new URLSearchParams(window.location.search).get('interes');
+    if (fromUrl && INTERESTS.includes(fromUrl)) setInterests((cur) => (cur.includes(fromUrl) ? cur : [...cur, fromUrl]));
     return () => window.removeEventListener(SELECT_PROJECT_TYPE, onSelect);
   }, []);
 

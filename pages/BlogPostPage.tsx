@@ -3,6 +3,28 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { posts } from '../data/blog';
 
+/** One block of post content: "## " subheading, "- " list, or paragraph (see data/blog.ts). */
+function renderBlock(block: string, i: number) {
+  if (block.startsWith('## ')) {
+    return (
+      <h2 key={i} className="pt-6 text-[clamp(1.4rem,2.2vw,1.75rem)] leading-tight font-medium tracking-[-0.015em] text-fg">
+        {block.slice(3)}
+      </h2>
+    );
+  }
+  const lines = block.split('\n');
+  if (lines.every((l) => l.startsWith('- '))) {
+    return (
+      <ul key={i} className="list-disc space-y-2 pl-6 marker:text-accent">
+        {lines.map((l) => (
+          <li key={l}>{l.slice(2)}</li>
+        ))}
+      </ul>
+    );
+  }
+  return <p key={i}>{block}</p>;
+}
+
 export const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const index = posts.findIndex((p) => p.slug === slug);
@@ -47,23 +69,7 @@ export const BlogPostPage: React.FC = () => {
 
       <div>
         <div className="container-page max-w-4xl space-y-6 py-16 text-[17px] leading-[1.85] text-fg/90 sm:py-20">
-          {post.content.split('\n\n').map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-
-          {/* `source` is free text from the weekly script (a publication name), sometimes a URL. */}
-          {post.source && (
-            <p className="border-t border-line pt-6 text-sm text-muted">
-              Fuente:{' '}
-              {/^https?:\/\//.test(post.source) ? (
-                <a href={post.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-fg">
-                  {post.source}
-                </a>
-              ) : (
-                post.source
-              )}
-            </p>
-          )}
+          {post.content.split('\n\n').map(renderBlock)}
         </div>
       </div>
 

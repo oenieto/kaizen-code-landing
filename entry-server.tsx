@@ -4,7 +4,8 @@ import { StaticRouter } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
 import App from './App';
 
-export { routes, notFoundMeta, SITE_URL, SITE_NAME, OG_IMAGE } from './data/seo';
+export { routes, notFoundMeta, solutionPath, SITE_URL, SITE_NAME, OG_IMAGE } from './data/seo';
+export { solutions } from './data/site';
 export { posts } from './data/blog';
 
 /**

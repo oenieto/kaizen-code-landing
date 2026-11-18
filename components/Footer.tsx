@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CONTACT } from '../data/site';
+import { CONTACT, solutions } from '../data/site';
+import { solutionPath } from '../data/seo';
 
 const site = [
   { label: 'Soluciones', to: '/#solutions' },
@@ -24,7 +25,20 @@ export const Footer: React.FC = () => (
         <span className="text-2xl font-semibold tracking-[-0.02em] uppercase">Kaizen Code</span>
       </Link>
 
-      <address className="border-y border-rule py-4 text-[15px] leading-[1.9] not-italic lg:col-span-3 lg:col-start-10">
+      <nav aria-label="Soluciones" className="text-[15px] leading-[1.9] lg:col-span-3">
+        <p className="text-sm text-faint">Soluciones</p>
+        <ul className="mt-2">
+          {solutions.map((s) => (
+            <li key={s.slug}>
+              <Link to={solutionPath(s.path)} className="hover:underline hover:underline-offset-4">
+                {s.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <address className="border-y border-rule py-4 text-[15px] leading-[1.9] not-italic lg:col-span-3">
         Estudio de ingeniería de software.
         <br />
         Hecho en México.

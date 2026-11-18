@@ -1,4 +1,5 @@
 import { posts } from './blog';
+import { solutions } from './site';
 
 /**
  * Single source of truth for per-route metadata. Used by the client (useSeo) and by
@@ -14,7 +15,7 @@ export interface RouteMeta {
   path: string;
   title: string;
   description: string;
-  type?: 'website' | 'article';
+  type?: 'website' | 'article' | 'solution';
 }
 
 const staticRoutes: RouteMeta[] = [
@@ -60,15 +61,26 @@ const staticRoutes: RouteMeta[] = [
   },
 ];
 
+/** Google shows ~60 characters; drop the brand suffix rather than truncate the headline. */
+const withBrand = (title: string) => (title.length + BRAND_SUFFIX.length <= 60 ? `${title}${BRAND_SUFFIX}` : title);
+
+export const solutionPath = (path: string) => `/soluciones/${path}`;
+
+export const solutionRoutes: RouteMeta[] = solutions.map((s) => ({
+  path: solutionPath(s.path),
+  title: withBrand(s.seoTitle),
+  description: s.seoDescription,
+  type: 'solution',
+}));
+
 export const postRoutes: RouteMeta[] = posts.map((p) => ({
   path: `/blog/${p.slug}`,
-  // Google shows ~60 characters; drop the brand suffix rather than truncate the headline.
-  title: p.title.length + BRAND_SUFFIX.length <= 60 ? `${p.title}${BRAND_SUFFIX}` : p.title,
+  title: withBrand(p.title),
   description: p.excerpt,
   type: 'article',
 }));
 
-export const routes: RouteMeta[] = [...staticRoutes, ...postRoutes];
+export const routes: RouteMeta[] = [...staticRoutes, ...solutionRoutes, ...postRoutes];
 
 export const notFoundMeta: RouteMeta = {
   path: '/404',

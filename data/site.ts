@@ -347,6 +347,16 @@ export interface Solution {
   pitch: string;
   includes: string[];
   stack: string;
+  /** URL segment of the solution's own page: /soluciones/<path>. */
+  path: string;
+  /** <title> and meta description of that page. */
+  seoTitle: string;
+  seoDescription: string;
+  /** The problem it solves, in a sentence or two. */
+  problem: string;
+  /** How a project runs, from first call to live. */
+  steps: { title: string; text: string }[];
+  faqs: { q: string; a: string }[];
 }
 
 /**
@@ -366,6 +376,23 @@ export const solutions: Solution[] = [
       'Reportes de conversión y tareas automáticas',
     ],
     stack: 'Twenty CRM (open source) · TypeScript · PostgreSQL',
+    path: "crm-a-la-medida",
+    seoTitle: "CRM a la medida en México, sin licencias por usuario",
+    seoDescription:
+      "Desarrollamos CRM a la medida para inmobiliarias, despachos y equipos de ventas en México: embudo, WhatsApp y correo integrados, reportes y sin pagar por usuario.",
+    problem:
+      "Los CRM de suscripción cobran por cada usuario cada mes y te obligan a adaptar tu proceso a sus pantallas. Al final el equipo vuelve a Excel y WhatsApp, y nadie sabe en qué etapa está cada cliente.",
+    steps: [
+      { title: "Mapeamos tu proceso de venta", text: "Revisamos contigo las etapas, los campos y los reportes que de verdad usan tus vendedores y tu dirección." },
+      { title: "Configuramos y migramos", text: "Montamos el CRM sobre una base open source probada, lo adaptamos a tu proceso e importamos tus contactos desde Excel o tu sistema actual." },
+      { title: "Conectamos tus canales", text: "Integramos WhatsApp, correo y formularios de tu sitio para que cada conversación quede en el historial del cliente." },
+      { title: "Capacitamos y acompañamos", text: "Entrenamos a tu equipo y ajustamos durante las primeras semanas de uso." },
+    ],
+    faqs: [
+      { q: "¿En qué se diferencia de HubSpot o Salesforce?", a: "Esos productos cobran licencia por usuario y su modelo de datos es genérico. Un CRM a la medida se adapta a tu proceso y el costo no crece cada vez que contratas a un vendedor." },
+      { q: "¿Dónde quedan mis datos?", a: "En tu propia infraestructura o en una nube a tu nombre. Los datos son tuyos y puedes exportarlos cuando quieras." },
+      { q: "¿Puedo empezar con algo pequeño?", a: "Sí. Empezamos con el embudo y los contactos, y agregamos integraciones y reportes conforme tu equipo lo adopta." },
+    ],
   },
   {
     slug: 'tours-3d',
@@ -379,6 +406,23 @@ export const solutions: Solution[] = [
       'Página propia por desarrollo, lista para anuncios',
     ],
     stack: 'Gaussian Splatting · Three.js · WebGL',
+    path: "recorridos-3d-inmuebles",
+    seoTitle: "Recorridos 3D para inmobiliarias y desarrolladoras",
+    seoDescription:
+      "Recorridos 3D fotorrealistas para vender inmuebles desde el navegador: captura con celular o cámara 360, plano interactivo con disponibilidad y precio por unidad.",
+    problem:
+      "Mostrar un inmueble cuesta tiempo de traslado, citas canceladas y visitas de curiosos. Las fotos y los renders no le dan al comprador la sensación de estar ahí, y los recorridos 360 tradicionales se ven planos.",
+    steps: [
+      { title: "Capturamos el espacio", text: "Grabamos el inmueble con un video de celular o una cámara 360. Para preventas trabajamos a partir de los modelos 3D del proyecto." },
+      { title: "Reconstruimos en 3D", text: "Procesamos la captura con Gaussian Splatting para obtener un modelo fotorrealista que se recorre libremente." },
+      { title: "Publicamos la experiencia", text: "Entregamos una página por desarrollo con el recorrido, el plano interactivo y la disponibilidad por unidad, lista para tus anuncios." },
+      { title: "Medimos el interés", text: "Registramos qué unidades y espacios ven más tus prospectos para que tu equipo de ventas les dé seguimiento." },
+    ],
+    faqs: [
+      { q: "¿El cliente necesita instalar algo?", a: "No. El recorrido funciona en el navegador del celular o de la computadora, sin apps ni lentes." },
+      { q: "¿Sirve para inmuebles que aún no se construyen?", a: "Sí. A partir de los modelos 3D o renders del proyecto armamos el recorrido para la preventa." },
+      { q: "¿Cuánto tarda?", a: "Depende del número de unidades y de la captura. En la primera llamada te damos un calendario concreto para tu desarrollo." },
+    ],
   },
   {
     slug: 'whatsapp',
@@ -392,6 +436,23 @@ export const solutions: Solution[] = [
       'Traspaso a humano con todo el contexto',
     ],
     stack: 'WhatsApp Cloud API · LLM con guardrails · Node.js',
+    path: "agente-whatsapp-ia",
+    seoTitle: "Agente de ventas en WhatsApp con IA para negocios",
+    seoDescription:
+      "Un agente de WhatsApp con IA que responde 24/7, agenda citas, toma pedidos y califica prospectos con la API oficial de Meta, y pasa a una persona cuando hace falta.",
+    problem:
+      "Tus clientes escriben por WhatsApp a cualquier hora y esperan respuesta inmediata. Cada mensaje que se queda sin contestar por la noche o en fin de semana es una venta que se va con la competencia.",
+    steps: [
+      { title: "Definimos qué debe resolver", text: "Elegimos contigo las conversaciones que el agente atiende solo (precios, horarios, citas, pedidos) y cuáles pasan a tu equipo." },
+      { title: "Lo entrenamos con tu negocio", text: "Cargamos tu catálogo, precios, horarios y políticas para que responda con tu información y no invente." },
+      { title: "Lo conectamos al número oficial", text: "Configuramos la API de WhatsApp de Meta, tu agenda y tu CRM para que cada cita o pedido quede registrado." },
+      { title: "Lo supervisamos", text: "Revisamos conversaciones reales en las primeras semanas y ajustamos respuestas y reglas de traspaso." },
+    ],
+    faqs: [
+      { q: "¿Va a contestar cosas que no debe?", a: "El agente responde solo con la información que le damos y tiene reglas para pasar a una persona cuando no sabe algo o el cliente lo pide." },
+      { q: "¿Puedo seguir usando mi número actual?", a: "Generalmente sí: migramos tu número a la API oficial de WhatsApp Business. Te explicamos el proceso y sus implicaciones antes de hacerlo." },
+      { q: "¿Qué pasa con los mensajes que atiende mi equipo?", a: "Tu equipo ve todas las conversaciones y puede tomar cualquiera en cualquier momento, con el historial completo." },
+    ],
   },
   {
     slug: 'n8n',
@@ -405,6 +466,23 @@ export const solutions: Solution[] = [
       'Servidor propio: tus datos no salen de tu infraestructura',
     ],
     stack: 'n8n self-hosted · Agentes de IA · Webhooks',
+    path: "automatizacion-de-procesos-n8n",
+    seoTitle: "Automatización de procesos con n8n e IA para empresas",
+    seoDescription:
+      "Automatizamos el trabajo repetitivo de tu empresa con n8n en servidor propio y agentes de IA: del formulario al CRM, de la factura a contabilidad, de los datos al reporte.",
+    problem:
+      "Tu equipo pasa horas copiando datos de un sistema a otro, armando reportes a mano y revisando correos para saber qué hacer. Es trabajo que no aporta y donde se cuelan errores.",
+    steps: [
+      { title: "Encontramos los procesos que más cuestan", text: "Revisamos contigo dónde se va el tiempo de tu equipo y elegimos los flujos con más impacto." },
+      { title: "Diseñamos el flujo", text: "Dibujamos paso a paso qué entra, qué se valida y a dónde va, incluyendo qué pasa cuando algo falla." },
+      { title: "Lo construimos en n8n", text: "Montamos n8n en un servidor propio y conectamos tus herramientas. Donde hace falta criterio, agregamos un agente de IA que clasifica o extrae datos." },
+      { title: "Lo dejamos vigilado", text: "Configuramos alertas para que nadie se entere de un error una semana después." },
+    ],
+    faqs: [
+      { q: "¿Por qué n8n y no Zapier o Make?", a: "n8n se puede instalar en tu propio servidor, así tus datos no pasan por terceros y no pagas por cada ejecución. Si ya usas otra herramienta, también podemos trabajar con ella." },
+      { q: "¿Qué herramientas se pueden conectar?", a: "Hojas de cálculo, CRM, ERP, correo, WhatsApp, bases de datos y casi cualquier sistema con API. Si tu sistema no tiene API, buscamos otra vía." },
+      { q: "¿Qué pasa si un flujo falla?", a: "Cada flujo tiene manejo de errores y alertas. Te avisamos y lo corregimos según el plan de soporte que contrates." },
+    ],
   },
   {
     slug: 'voz',
@@ -418,6 +496,23 @@ export const solutions: Solution[] = [
       'Grabación, transcripción y resumen de cada llamada',
     ],
     stack: 'Vapi / Retell · Voces de ElevenLabs · Twilio',
+    path: "agente-de-voz-ia",
+    seoTitle: "Agente de voz con IA para llamadas telefónicas",
+    seoDescription:
+      "Un agente de voz con IA que contesta y hace llamadas en español: agenda, confirma citas, califica prospectos y transfiere a tu equipo, con grabación y resumen de cada llamada.",
+    problem:
+      "Las llamadas perdidas son clientes perdidos, y confirmar citas o calificar prospectos por teléfono consume horas de tu equipo todos los días.",
+    steps: [
+      { title: "Escribimos el guion", text: "Definimos contigo qué debe lograr cada llamada, qué preguntas hace el agente y cuándo transfiere a una persona." },
+      { title: "Elegimos la voz y el número", text: "Configuramos una voz natural en español y un número telefónico, o conectamos tu conmutador actual." },
+      { title: "Lo conectamos a tu operación", text: "Integramos tu agenda y tu CRM para que cada cita, confirmación o prospecto quede registrado." },
+      { title: "Escuchamos y ajustamos", text: "Revisamos grabaciones y transcripciones de las primeras semanas para mejorar el guion." },
+    ],
+    faqs: [
+      { q: "¿El cliente sabe que habla con una IA?", a: "Recomendamos que el agente se presente como asistente virtual. Es lo más honesto y evita malas experiencias." },
+      { q: "¿Puede transferir la llamada a una persona?", a: "Sí. Cuando el caso lo requiere o el cliente lo pide, transfiere la llamada a tu equipo con el contexto de la conversación." },
+      { q: "¿Qué queda registrado?", a: "Cada llamada queda grabada, transcrita y resumida en tu CRM o en el sistema que uses." },
+    ],
   },
   {
     slug: 'documentos',
@@ -431,5 +526,22 @@ export const solutions: Solution[] = [
       'Bandeja de revisión para los casos dudosos',
     ],
     stack: 'Claude API · OCR · Python',
+    path: "lectura-inteligente-de-documentos",
+    seoTitle: "Lectura inteligente de documentos y facturas CFDI con IA",
+    seoDescription:
+      "Extraemos datos de facturas CFDI, contratos, identificaciones y comprobantes con IA, los validamos contra tus reglas y el SAT y los cargamos a tus sistemas.",
+    problem:
+      "Capturar a mano facturas, contratos o comprobantes es lento y propenso a errores, y cada error en contabilidad o en un expediente cuesta caro después.",
+    steps: [
+      { title: "Reunimos ejemplos reales", text: "Revisamos los tipos de documento que recibes y los datos que necesitas de cada uno." },
+      { title: "Configuramos la extracción", text: "Combinamos lectura de XML, OCR e IA para sacar los datos de PDF, fotos y escaneos." },
+      { title: "Validamos antes de cargar", text: "Revisamos cada dato contra tus reglas de negocio y, en el caso de CFDI, contra el SAT. Los casos dudosos van a una bandeja de revisión humana." },
+      { title: "Lo integramos a tus sistemas", text: "Los datos validados entran directo a tu sistema contable, ERP o expediente." },
+    ],
+    faqs: [
+      { q: "¿Qué tan precisa es la extracción?", a: "Depende de la calidad de los documentos. Por eso todo pasa por validaciones y los casos dudosos los revisa una persona antes de cargarse." },
+      { q: "¿Sirve para documentos escaneados o fotos?", a: "Sí. Trabajamos con PDF, XML, fotos de celular y escaneos." },
+      { q: "¿Dónde se procesan mis documentos?", a: "Definimos contigo dónde se procesan y almacenan, y aplicamos las medidas de seguridad que tu operación requiere." },
+    ],
   },
 ];

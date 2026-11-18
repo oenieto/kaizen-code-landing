@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { solutions, SELECT_PROJECT_TYPE } from '../data/site';
+import { solutionPath } from '../data/seo';
 import { Section } from './Section';
 import { Reveal } from './Reveal';
 
@@ -28,7 +30,7 @@ export const Solutions: React.FC = () => (
                 </li>
               ))}
             </ul>
-            <div className="mt-auto pt-8">
+            <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-4 pt-8">
               <a
                 href="#contact"
                 onClick={() => window.dispatchEvent(new CustomEvent(SELECT_PROJECT_TYPE, { detail: s.name }))}
@@ -36,6 +38,9 @@ export const Solutions: React.FC = () => (
               >
                 Quiero esta solución
               </a>
+              <Link to={solutionPath(s.path)} className="link text-[15px]">
+                Ver cómo funciona<span className="sr-only">: {s.name}</span>
+              </Link>
             </div>
           </article>
         </Reveal>

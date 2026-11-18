@@ -6,12 +6,12 @@ Fundado por Oscar Emiliano Nieto Guerra, Juan Antonio Sánchez Jiménez, Maurici
 
 ## Soluciones
 
-- CRM a la medida: embudo de ventas, contactos y seguimiento por vendedor, con WhatsApp y correo integrados y sin licencias por usuario. Para inmobiliarias, despachos, distribuidoras y equipos de ventas.
-- Recorridos 3D para inmuebles: recorridos fotorrealistas en el navegador, plano interactivo con disponibilidad y precio por unidad. Para desarrolladoras e inmobiliarias.
-- Agente de ventas en WhatsApp: responde 24/7, agenda citas, toma pedidos y califica prospectos con la API oficial de WhatsApp; pasa la conversación a una persona cuando hace falta.
-- Automatización de procesos: flujos con n8n en servidor propio y agentes de IA que clasifican, resumen y extraen datos entre hojas de cálculo, CRM, ERP y correo.
-- Agente de voz telefónico: contesta y hace llamadas con voz natural para agendar, confirmar citas y calificar prospectos.
-- Lectura inteligente de documentos: convierte facturas (CFDI), contratos, identificaciones y comprobantes en datos estructurados que entran a tus sistemas, con validación contra reglas de negocio y el SAT.
+- [CRM a la medida](https://kaizencode.com.mx/soluciones/crm-a-la-medida): embudo de ventas, contactos y seguimiento por vendedor, con WhatsApp y correo integrados y sin licencias por usuario. Para inmobiliarias, despachos, distribuidoras y equipos de ventas.
+- [Recorridos 3D para inmuebles](https://kaizencode.com.mx/soluciones/recorridos-3d-inmuebles): recorridos fotorrealistas en el navegador, plano interactivo con disponibilidad y precio por unidad. Para desarrolladoras e inmobiliarias.
+- [Agente de ventas en WhatsApp](https://kaizencode.com.mx/soluciones/agente-whatsapp-ia): responde 24/7, agenda citas, toma pedidos y califica prospectos con la API oficial de WhatsApp; pasa la conversación a una persona cuando hace falta.
+- [Automatización de procesos](https://kaizencode.com.mx/soluciones/automatizacion-de-procesos-n8n): flujos con n8n en servidor propio y agentes de IA que clasifican, resumen y extraen datos entre hojas de cálculo, CRM, ERP y correo.
+- [Agente de voz telefónico](https://kaizencode.com.mx/soluciones/agente-de-voz-ia): contesta y hace llamadas con voz natural para agendar, confirmar citas y calificar prospectos.
+- [Lectura inteligente de documentos](https://kaizencode.com.mx/soluciones/lectura-inteligente-de-documentos): convierte facturas (CFDI), contratos, identificaciones y comprobantes en datos estructurados que entran a tus sistemas, con validación contra reglas de negocio y el SAT.
 
 ## Páginas
 
@@ -20,5 +20,9 @@ Fundado por Oscar Emiliano Nieto Guerra, Juan Antonio Sánchez Jiménez, Maurici
 - [Cómo trabajamos](https://kaizencode.com.mx/como-trabajamos): proceso de desarrollo, modelos de contratación y estándares de ingeniería.
 - [Nosotros](https://kaizencode.com.mx/about): el equipo fundador.
 - [Blog](https://kaizencode.com.mx/blog): artículos sobre desarrollo de software, infraestructura e IA.
+- [CRM a la medida o CRM de suscripción: cómo decidir](https://kaizencode.com.mx/blog/crm-a-la-medida-o-crm-de-suscripcion)
+- [Agente de WhatsApp con IA: qué puede hacer y qué no](https://kaizencode.com.mx/blog/agente-whatsapp-ia-que-puede-hacer)
+- [Procesos que puedes automatizar con n8n](https://kaizencode.com.mx/blog/procesos-que-puedes-automatizar-con-n8n)
+- [Recorridos 3D para vender inmuebles](https://kaizencode.com.mx/blog/recorridos-3d-inmuebles-gaussian-splatting)
 - [Aviso de privacidad](https://kaizencode.com.mx/privacy)
 - [Términos y condiciones](https://kaizencode.com.mx/terms)
