@@ -29,7 +29,7 @@ export const BlogPage: React.FC = () => {
       <PageHeader
         label="Blog"
         title="Notas sobre software, infraestructura e IA."
-        intro="Una selección semanal de lo relevante en tecnología, curada y resumida en español con un pipeline automatizado de GitHub Actions y la API de Claude."
+        intro="Lo relevante en desarrollo de software, infraestructura e inteligencia artificial, explicado en español por el equipo de Kaizen Code."
       />
 
       {featured && (

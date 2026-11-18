@@ -1,0 +1,24 @@
+# Kaizen Code
+
+> Estudio de ingeniería de software en México. Diseñamos, construimos y operamos sistemas a la medida para empresas en México, Latinoamérica y Estados Unidos: CRM, agentes de WhatsApp y de voz con IA, automatización de procesos con n8n, recorridos 3D para inmuebles y plataformas web.
+
+Fundado por Oscar Emiliano Nieto Guerra, Juan Antonio Sánchez Jiménez, Mauricio Israel Mondragón Chávez y Amoxhua Ochoa Contreras. Contacto: contacto@kaizencode.com.mx o el formulario en https://kaizencode.com.mx/#contact. Respondemos el mismo día hábil.
+
+## Soluciones
+
+- CRM a la medida: embudo de ventas, contactos y seguimiento por vendedor, con WhatsApp y correo integrados y sin licencias por usuario. Para inmobiliarias, despachos, distribuidoras y equipos de ventas.
+- Recorridos 3D para inmuebles: recorridos fotorrealistas en el navegador, plano interactivo con disponibilidad y precio por unidad. Para desarrolladoras e inmobiliarias.
+- Agente de ventas en WhatsApp: responde 24/7, agenda citas, toma pedidos y califica prospectos con la API oficial de WhatsApp; pasa la conversación a una persona cuando hace falta.
+- Automatización de procesos: flujos con n8n en servidor propio y agentes de IA que clasifican, resumen y extraen datos entre hojas de cálculo, CRM, ERP y correo.
+- Agente de voz telefónico: contesta y hace llamadas con voz natural para agendar, confirmar citas y calificar prospectos.
+- Lectura inteligente de documentos: convierte facturas (CFDI), contratos, identificaciones y comprobantes en datos estructurados que entran a tus sistemas, con validación contra reglas de negocio y el SAT.
+
+## Páginas
+
+- [Inicio](https://kaizencode.com.mx/): soluciones, proyectos destacados y contacto.
+- [Proyectos](https://kaizencode.com.mx/trabajo): proyectos con clientes (portales para telecomunicaciones, facturación CFDI) y productos propios.
+- [Cómo trabajamos](https://kaizencode.com.mx/como-trabajamos): proceso de desarrollo, modelos de contratación y estándares de ingeniería.
+- [Nosotros](https://kaizencode.com.mx/about): el equipo fundador.
+- [Blog](https://kaizencode.com.mx/blog): artículos sobre desarrollo de software, infraestructura e IA.
+- [Aviso de privacidad](https://kaizencode.com.mx/privacy)
+- [Términos y condiciones](https://kaizencode.com.mx/terms)

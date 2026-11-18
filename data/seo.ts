@@ -8,6 +8,7 @@ import { posts } from './blog';
 export const SITE_URL = 'https://kaizencode.com.mx';
 export const SITE_NAME = 'Kaizen Code';
 export const OG_IMAGE = `${SITE_URL}/og.png`;
+const BRAND_SUFFIX = ' — Kaizen Code';
 
 export interface RouteMeta {
   path: string;
@@ -21,30 +22,31 @@ const staticRoutes: RouteMeta[] = [
     path: '/',
     title: 'Kaizen Code — CRM, WhatsApp con IA y automatización en México',
     description:
-      'Kaizen Code es un estudio de ingeniería de software en México. Desarrollamos CRM a la medida, agentes de WhatsApp e IA, automatizaciones con n8n, recorridos 3D para inmuebles y plataformas web listas para producción.',
+      'Estudio de software en México: CRM a la medida, agentes de WhatsApp con IA, automatización con n8n, recorridos 3D para inmuebles y plataformas web.',
   },
   {
     path: '/trabajo',
-    title: 'Trabajo — Kaizen Code',
+    title: 'Proyectos de software a la medida en México — Kaizen Code',
     description:
       'Proyectos de Kaizen Code: portales para telecomunicaciones, facturación CFDI, asistentes con IA, agentes de WhatsApp y más.',
   },
   {
     path: '/como-trabajamos',
-    title: 'Cómo trabajamos — Kaizen Code',
+    title: 'Proceso de desarrollo de software a la medida — Kaizen Code',
     description:
       'Nuestro proceso de desarrollo de software paso a paso, modelos de contratación y estándares de ingeniería: pruebas, seguridad y despliegues confiables.',
   },
   {
     path: '/about',
-    title: 'Nosotros — Kaizen Code',
+    title: 'Equipo de ingenieros de software en México — Kaizen Code',
     description:
       'Conoce al equipo de Kaizen Code: ingenieros de software en México que diseñan, construyen y operan sistemas con estándares de producción.',
   },
   {
     path: '/blog',
-    title: 'Blog — Kaizen Code',
-    description: 'Notas semanales sobre desarrollo de software, infraestructura e inteligencia artificial, en español.',
+    title: 'Blog de desarrollo de software e IA — Kaizen Code',
+    description:
+      'Artículos sobre desarrollo de software, infraestructura e inteligencia artificial, escritos en español por el equipo de Kaizen Code.',
   },
   {
     path: '/privacy',
@@ -60,7 +62,8 @@ const staticRoutes: RouteMeta[] = [
 
 export const postRoutes: RouteMeta[] = posts.map((p) => ({
   path: `/blog/${p.slug}`,
-  title: `${p.title} — Kaizen Code`,
+  // Google shows ~60 characters; drop the brand suffix rather than truncate the headline.
+  title: p.title.length + BRAND_SUFFIX.length <= 60 ? `${p.title}${BRAND_SUFFIX}` : p.title,
   description: p.excerpt,
   type: 'article',
 }));

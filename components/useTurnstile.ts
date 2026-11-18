@@ -41,6 +41,8 @@ export function useTurnstile(siteKey: string) {
   const widgetId = useRef<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
+  // True while Cloudflare shows the checkbox and waits for the visitor to tick it.
+  const [needsInteraction, setNeedsInteraction] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -56,6 +58,8 @@ export function useTurnstile(siteKey: string) {
           callback: (t: string) => setToken(t),
           'expired-callback': () => setToken(null),
           'error-callback': () => setToken(null),
+          'before-interactive-callback': () => setNeedsInteraction(true),
+          'after-interactive-callback': () => setNeedsInteraction(false),
         });
       })
       .catch(() => !cancelled && setFailed(true));
@@ -71,5 +75,5 @@ export function useTurnstile(siteKey: string) {
     if (widgetId.current && window.turnstile) window.turnstile.reset(widgetId.current);
   }, []);
 
-  return { containerRef, token, failed, reset };
+  return { containerRef, token, failed, needsInteraction, reset };
 }

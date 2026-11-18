@@ -5,12 +5,23 @@
   # Force HTTPS for a year, including subdomains (www). Add `; preload` and submit to
   # hstspreload.org only once you're sure every subdomain will always serve HTTPS.
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  # Only our own scripts plus Cloudflare Turnstile (anti-spam); styles/fonts also from Google Fonts. 'unsafe-inline' on
-  # style-src is needed for React style attributes (scroll-reveal animations).
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; upgrade-insecure-requests
+  # Only our own scripts plus Cloudflare Turnstile (anti-spam) and Cloudflare Web Analytics,
+  # which Cloudflare injects into every page. 'unsafe-inline' on style-src is needed for
+  # React style attributes (scroll-reveal animations).
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
 
+# Vite's build output has content hashes in its file names, so it never changes in place.
+# Files in public/assets and public/fonts keep their names: give them a new name if they change.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/*
+  Cache-Control: public, max-age=604800

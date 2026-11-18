@@ -62,7 +62,9 @@ export const Contact: React.FC = () => {
       setAlert(
         turnstile.failed
           ? `No pudimos cargar la verificación anti-spam. Escríbenos por WhatsApp o a ${CONTACT.email}.`
-          : 'Estamos verificando que no eres un robot; vuelve a intentar en un segundo.',
+          : turnstile.needsInteraction
+            ? 'Marca la casilla de verificación de arriba y vuelve a enviar.'
+            : 'Estamos verificando que no eres un robot; vuelve a intentar en un segundo.',
       );
       return;
     }
